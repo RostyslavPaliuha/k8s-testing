@@ -7,6 +7,14 @@ services:
     ports:
       - "8081:8081"
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.10'
+          memory: 256M
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081/api/v1/data"]
       interval: 30s
