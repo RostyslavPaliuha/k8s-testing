@@ -21,14 +21,14 @@ public class ServiceApplication {
 }
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/api/v1")
 class RestApiController {
 
   @Value("classpath:data.json")
   private Resource data;
 
   @GetMapping("/data")
-  public String data() throws IOException {
+  public String data() throws IOException, InterruptedException {
     return data.getContentAsString(StandardCharsets.UTF_8);
   }
 
