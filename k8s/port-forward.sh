@@ -10,4 +10,5 @@ echo ""
 echo "Press Ctrl+C to stop port forwarding"
 echo ""
 
-kubectl port-forward -n service-ns svc/service 30081:8081
+kubectl port-forward service/ingress-nginx-controller 8081:80 -n ingress-nginx
+
