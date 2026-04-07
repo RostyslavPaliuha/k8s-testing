@@ -16,21 +16,21 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 20  # Lowered from 40% to 20% to trigger much faster
+          averageUtilization: 20
   behavior:
     scaleUp:
-      stabilizationWindowSeconds: 0 # Immediate reaction
+      stabilizationWindowSeconds: 5
       policies:
         - type: Pods
-          value: 4             # Jump by 4 pods at a time instead of 2
+          value: 1
           periodSeconds: 1
         - type: Percent
-          value: 200           # Allow doubling the fleet every 15s
+          value: 200
           periodSeconds: 1
       selectPolicy: Max
     scaleDown:
       stabilizationWindowSeconds: 15 # Dropped from 30s to 15s for faster reset
       policies:
         - type: Percent
-          value: 100           # Allow killing all extra pods at once when load stops
-          periodSeconds: 15
+          value: 30           # Allow killing all extra pods at once when load stops
+          periodSeconds: 10
