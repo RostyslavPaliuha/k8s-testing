@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-java-service
+  name: resource-service
   namespace: argocd # Must be in the argocd namespace
 spec:
   project: default
