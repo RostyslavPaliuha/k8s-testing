@@ -2,13 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: resource-service
-  namespace: argocd # Must be in the argocd namespace
+  namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/RostyslavPaliuha/k8s-testing
     targetRevision: master
-    path: k8s # The folder where your descriptors live
+    path: k8s
   destination:
     server: https://kubernetes.default.svc
     namespace: service-ns
