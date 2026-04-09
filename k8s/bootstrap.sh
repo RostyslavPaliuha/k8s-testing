@@ -79,10 +79,44 @@ else
   echo "   🔑 Admin password: $PASSWORD"
 fi
 
-# ── 3. Deploy Service via ArgoCD ─────────────────────────────────
+# ── 4. PostgreSQL ────────────────────────────────────────────────
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "📦 Step 3/4: Deploying Service (via ArgoCD)"
+echo "🐘 Step 4/6: Installing PostgreSQL"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+if kubectl get deployment postgres -n service-ns &>/dev/null; then
+  echo "✅ PostgreSQL already installed, skipping"
+else
+  echo "   Deploying PostgreSQL..."
+  kubectl apply -f "$SCRIPT_DIR/postgres-app.yaml"
+
+  echo "   Waiting for PostgreSQL to be ready..."
+  kubectl rollout status deployment postgres -n service-ns --timeout=120s
+  echo "✅ PostgreSQL installed"
+fi
+
+# ── 5. Redis ─────────────────────────────────────────────────────
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔴 Step 5/6: Installing Redis"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+if kubectl get deployment redis -n service-ns &>/dev/null; then
+  echo "✅ Redis already installed, skipping"
+else
+  echo "   Deploying Redis..."
+  kubectl apply -f "$SCRIPT_DIR/redis-app.yml"
+
+  echo "   Waiting for Redis to be ready..."
+  kubectl rollout status deployment redis -n service-ns --timeout=120s
+  echo "✅ Redis installed"
+fi
+
+# ── 6. Deploy Service via ArgoCD ─────────────────────────────────
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "📦 Step 6/6: Deploying Service (via ArgoCD)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 echo "   Creating ArgoCD Application..."
@@ -96,10 +130,10 @@ kubectl rollout status deployment service-deployment -n service-ns --timeout=300
 
 echo "✅ Service deployed"
 
-# ── 4. Verify Everything ─────────────────────────────────────────
+# ── 7. Verify Everything ─────────────────────────────────────────
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "🔍 Step 4/4: Verification"
+echo "🔍 Step 7/6: Final Verification"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ERRORS=0
@@ -110,6 +144,15 @@ if kubectl top nodes &>/dev/null; then
   echo "   ✅ Reporting node metrics"
 else
   echo "   ❌ Not reporting metrics yet — wait 30s and try: kubectl top nodes"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Redis:"
+if kubectl get deployment redis -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ redis ready"
+else
+  echo "   ❌ redis not ready"
   ERRORS=$((ERRORS + 1))
 fi
 
