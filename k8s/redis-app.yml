@@ -11,6 +11,8 @@ spec:
     targetRevision: 18.x.x
     helm:
       values: |
+        image:
+          tag: latest
         architecture: standalone
         auth:
           enabled: true
