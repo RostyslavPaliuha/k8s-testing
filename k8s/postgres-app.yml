@@ -14,7 +14,7 @@ spec:
         global:
           postgresql:
             auth:
-              database: "my_database"
+              database: "auth_db"
               username: "admin"
               password: "YourSecurePassword"
         primary:
