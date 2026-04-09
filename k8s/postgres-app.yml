@@ -18,10 +18,8 @@ spec:
               username: "admin"
               password: "YourSecurePassword"
           storageClass: "hostpath"
-          imageRegistry: "docker.io"
-        image:
-          tag: latest
-          registry: docker.io/bitnamilegacy
+          image:
+            registry: "docker.io/bitnamilegacy"
         primary:
           persistence:
             enabled: true
