@@ -17,12 +17,15 @@ spec:
               database: "auth_db"
               username: "admin"
               password: "YourSecurePassword"
+          storageClass: "hostpath"
+          imageRegistry: "docker.io"
+        image:
+          registry: docker.io/bitnamilegacy
         primary:
           persistence:
             enabled: true
             mountPath: /bitnami/postgresql
             size: 8Gi
-            storageClass: "hostpath" 
           resources:
             requests:
               cpu: 250m
