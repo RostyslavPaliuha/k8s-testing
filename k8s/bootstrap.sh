@@ -148,6 +148,15 @@ else
 fi
 
 echo ""
+echo "   PostgreSQL:"
+if kubectl get deployment postgres -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ postgres ready"
+else
+  echo "   ❌ postgres not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
 echo "   Redis:"
 if kubectl get deployment redis -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ redis ready"
