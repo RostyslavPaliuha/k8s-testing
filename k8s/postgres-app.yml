@@ -8,7 +8,7 @@ spec:
   source:
     chart: postgresql
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 15.x.x # Targets Postgres 16/17 series
+    targetRevision: 15.x.x
     helm:
       values: |
         global:
@@ -18,8 +18,10 @@ spec:
               username: "admin"
               password: "YourSecurePassword"
           storageClass: "hostpath"
-          image:
-            registry: "docker.io/bitnamilegacy"
+        image:
+          registry: docker.io
+          repository: bitnamilegacy/postgresql
+          tag: "17.6.0-debian-12-r4"
         primary:
           persistence:
             enabled: true
