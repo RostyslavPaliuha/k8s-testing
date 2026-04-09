@@ -20,6 +20,7 @@ spec:
           storageClass: "hostpath"
           imageRegistry: "docker.io"
         image:
+          tag: latest
           registry: docker.io/bitnamilegacy
         primary:
           persistence:
