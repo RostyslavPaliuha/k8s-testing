@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authorization-server
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/RostyslavPaliuha/k8s-testing
+    targetRevision: master
+    path: k8s/authorization-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: authorization-server-ns
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
