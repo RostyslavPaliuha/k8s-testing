@@ -11,12 +11,12 @@ spec:
     targetRevision: 15.x.x
     helm:
       values: |
+        auth:
+          postgresPassword: "postgres"
+          database: "auth_server"
+          username: "postgres"
+          password: "postgres"
         global:
-          postgresql:
-            auth:
-              database: "auth_db"
-              username: "admin"
-              password: "YourSecurePassword"
           storageClass: "hostpath"
         image:
           registry: docker.io
@@ -36,7 +36,7 @@ spec:
               memory: 1Gi
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: authorization-server-ns
   syncPolicy:
     automated:
       prune: true
