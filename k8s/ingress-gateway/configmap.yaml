@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-gateway-config
+  namespace: ingress-gateway-ns
+data:
+  SERVER_PORT: "8080"
+  SPRING_PROFILES_ACTIVE: "k8s"
+  SPRING_DATA_REDIS_HOST: "redis"
+  SPRING_DATA_REDIS_PORT: "6379"
+  APP_ROUTE_BACKEND_URL: "http://service.service-ns.svc.cluster.local:8081"
+  APP_WEB_CLIENT_URL: "http://web-frontend:5000"
+  APP_SERVER_SHUTDOWN: "graceful"
