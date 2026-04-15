@@ -23,6 +23,9 @@ spec:
             - containerPort: 9000
               name: http
               protocol: TCP
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
           envFrom:
             - configMapRef:
                 name: authorization-server-config
