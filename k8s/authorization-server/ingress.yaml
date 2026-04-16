@@ -8,10 +8,9 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: authorization-server.local
-      http:
+   - http:
         paths:
-              - path: /
+              - path: /authorization
                 pathType: Prefix
                 backend:
                   service:
