@@ -5,6 +5,32 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 METRICS_VERSION="v0.7.2"
 
+wait_for_rollout() {
+  local resource="$1"
+  local namespace="$2"
+  local timeout="${3:-300s}"
+
+  echo "   Waiting for ${resource} in namespace ${namespace}..."
+  kubectl rollout status "${resource}" -n "${namespace}" --timeout="${timeout}"
+}
+
+wait_for_ingress_nginx() {
+  local attempts=60
+
+  echo "   Waiting for ingress-nginx admission service..."
+  for ((i=1; i<=attempts; i++)); do
+    if kubectl get svc ingress-nginx-controller-admission -n ingress-nginx &>/dev/null; then
+      echo "✅ ingress-nginx admission service is present"
+      wait_for_rollout deployment/ingress-nginx-controller ingress-nginx 300s
+      return 0
+    fi
+    sleep 5
+  done
+
+  echo "❌ ingress-nginx controller was not ready in time"
+  return 1
+}
+
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "🚀 Kubernetes Cluster Bootstrap"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -63,76 +89,34 @@ else
   kubectl create namespace argocd
 
   echo "   Installing ArgoCD manifests..."
-  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  #TODO find out how to fix The CustomResourceDefinition "applicationsets.argoproj.io" is invalid: metadata.annotations: Too long: may not be more than 262144 bytes
+  # Use --validate=false to skip validation for the problematic CRD
+  # Note: The command may print validation warnings but should still succeed
+  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --validate=false || true
 
-  echo "   Waiting for ArgoCD server to be ready..."
-  kubectl rollout status deployment argocd-server -n argocd --timeout=300s
+  # Verify that the core ArgoCD components were installed despite any validation warnings
+  if ! kubectl get deployment argocd-server -n argocd &>/dev/null; then
+    echo "❌ ArgoCD server deployment not found - installation may have failed"
+    exit 1
+  fi
+
+  wait_for_rollout deployment/argocd-server argocd 300s
+  wait_for_rollout deployment/argocd-repo-server argocd 300s
+  wait_for_rollout statefulset/argocd-application-controller argocd 300s
   sleep 10
   PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
   echo "✅ ArgoCD installed"
   echo "   🔑 Admin password: $PASSWORD"
-  kubectl apply -f "$SCRIPT_DIR/argo-application-authorization-server.yml"
-  kubectl apply -f "$SCRIPT_DIR/argo-application-ingress-gateway.yml"
-  kubectl apply -f "$SCRIPT_DIR/argo-application-resource-server.yml"
-fi
-## ingress controller
-
-# ── 4. PostgreSQL ────────────────────────────────────────────────
-echo ""
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "🐘 Step 4/6: Installing PostgreSQL"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-if kubectl get deployment postgres -n service-ns &>/dev/null; then
-  echo "✅ PostgreSQL already installed, skipping"
-else
-  echo "   Deploying PostgreSQL..."
-  kubectl apply -f "$SCRIPT_DIR/postgres-app.yml"
-
-  echo "   Waiting for PostgreSQL to be ready..."
-  kubectl rollout status deployment postgres -n service-ns --timeout=120s
-  echo "✅ PostgreSQL installed"
 fi
 
-# ── 5. Redis ─────────────────────────────────────────────────────
-echo ""
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "🔴 Step 5/6: Installing Redis"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Apply the cluster components"
+kubectl apply -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml"
+wait_for_ingress_nginx
 
-if kubectl get deployment redis -n service-ns &>/dev/null; then
-  echo "✅ Redis already installed, skipping"
-else
-  echo "   Deploying Redis..."
-  kubectl apply -f "$SCRIPT_DIR/redis-app.yml"
-
-  echo "   Waiting for Redis to be ready..."
-  kubectl rollout status deployment redis -n service-ns --timeout=120s
-  echo "✅ Redis installed"
-fi
-
-# ── 6. Deploy Service via ArgoCD ─────────────────────────────────
-echo ""
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "📦 Step 6/6: Deploying Service (via ArgoCD)"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-echo "   Creating ArgoCD Application..."
-kubectl apply -f "$SCRIPT_DIR/argocd/argocd_service_definition.yml"
-
-echo "   Waiting for resources to be created..."
-sleep 15
-
-echo "   Waiting for service deployment to be ready..."
-kubectl rollout status deployment service-deployment -n service-ns --timeout=300s
-
-echo "✅ Service deployed"
-
-# ── 7. Verify Everything ─────────────────────────────────────────
-echo ""
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "🔍 Step 7/6: Final Verification"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Apply argocd application definitions"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml"
 
 ERRORS=0
 
@@ -146,24 +130,6 @@ else
 fi
 
 echo ""
-echo "   PostgreSQL:"
-if kubectl get deployment postgres -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
-  echo "   ✅ postgres ready"
-else
-  echo "   ❌ postgres not ready"
-  ERRORS=$((ERRORS + 1))
-fi
-
-echo ""
-echo "   Redis:"
-if kubectl get deployment redis -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
-  echo "   ✅ redis ready"
-else
-  echo "   ❌ redis not ready"
-  ERRORS=$((ERRORS + 1))
-fi
-
-echo ""
 echo "   ArgoCD:"
 if kubectl get deployment argocd-server -n argocd -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ argocd-server ready"
@@ -173,11 +139,29 @@ else
 fi
 
 echo ""
-echo "   Service:"
+echo "   ingress-nginx:"
+if kubectl get deployment ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ ingress-nginx-controller ready"
+else
+  echo "   ❌ ingress-nginx-controller not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Resource Service:"
 if kubectl get deployment service-deployment -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ service-deployment ready"
 else
   echo "   ❌ service-deployment not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Authorization Server Database:"
+if kubectl get statefulset postgres-postgresql -n authorization-server-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ postgres-postgresql ready"
+else
+  echo "   ❌ postgres-postgresql not ready"
   ERRORS=$((ERRORS + 1))
 fi
 

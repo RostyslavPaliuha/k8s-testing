@@ -4,42 +4,47 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+delete_namespace() {
+  local namespace="$1"
+
+  kubectl delete namespace "$namespace" --ignore-not-found --wait=false
+
+  if kubectl get namespace "$namespace" >/dev/null 2>&1; then
+    echo "⏳ Waiting for namespace $namespace to terminate..."
+    if ! kubectl wait --for=delete "namespace/$namespace" --timeout=120s; then
+      echo "⚠️  Namespace $namespace is still terminating. Continuing cleanup."
+    fi
+  fi
+}
+
 echo "🧹 Cleaning up Kubernetes resources..."
 
 echo ""
-echo "🗑️  Cleaning up service resources..."
-kubectl delete -f "$SCRIPT_DIR/ingress.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/ingress-controller.yml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/hpa.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/service.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/deployment.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/configmap.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/namespace.yaml" --ignore-not-found
-
-echo ""
-echo "🗑️  Cleaning up authorization-server resources..."
-kubectl delete -f "$SCRIPT_DIR/authorization-server/service.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/authorization-server/deployment.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/authorization-server/secret.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/authorization-server/configmap.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/authorization-server/namespace.yaml" --ignore-not-found
-
-echo ""
-echo "🗑️  Cleaning up ingress-gateway resources..."
-kubectl delete -f "$SCRIPT_DIR/ingress-gateway/service.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/ingress-gateway/deployment.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/ingress-gateway/secret.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/ingress-gateway/configmap.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/ingress-gateway/namespace.yaml" --ignore-not-found
-
-echo ""
 echo "🗑️  Cleaning up ArgoCD resources..."
-kubectl delete -f "$SCRIPT_DIR/argocd/argocd_service_definition.yml" --ignore-not-found
-kubectl delete namespace argocd --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml" --ignore-not-found
 
 echo ""
-echo "🗑️  Cleaning up ingress-nginx controller..."
-kubectl delete -f "$SCRIPT_DIR/ingress-controller.yml" --ignore-not-found
+echo "🗑️  Cleaning up application namespaces..."
+delete_namespace service-ns
+delete_namespace authorization-server-ns
+delete_namespace ingress-gateway-ns
+delete_namespace ingress-nginx
+
+echo ""
+echo "🗑️  Cleaning up stale ingress-nginx cluster-scoped resources..."
+kubectl delete validatingwebhookconfiguration ingress-nginx-admission --ignore-not-found
+kubectl delete ingressclass nginx --ignore-not-found
+kubectl delete clusterrole ingress-nginx --ignore-not-found
+kubectl delete clusterrolebinding ingress-nginx --ignore-not-found
+kubectl delete clusterrole ingress-nginx-admission --ignore-not-found
+kubectl delete clusterrolebinding ingress-nginx-admission --ignore-not-found
+
+echo ""
+echo "🗑️  Cleaning up ArgoCD namespace..."
+delete_namespace argocd
 
 echo ""
 echo "🗑️  Cleaning up Metrics Server..."
