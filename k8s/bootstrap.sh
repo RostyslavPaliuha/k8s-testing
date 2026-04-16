@@ -1,12 +1,4 @@
 #!/bin/bash
-#
-# Bootstrap script — installs everything needed on a fresh cluster:
-#   1. Metrics Server (cluster infrastructure)
-#   2. ArgoCD (GitOps operator)
-#   3. Service deployment (via ArgoCD Application)
-#
-# Usage: ./k8s/bootstrap.sh
-#
 
 set -e
 
@@ -56,6 +48,8 @@ else
   fi
 fi
 
+
+
 # ── 2. ArgoCD ────────────────────────────────────────────────────
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -73,11 +67,15 @@ else
 
   echo "   Waiting for ArgoCD server to be ready..."
   kubectl rollout status deployment argocd-server -n argocd --timeout=300s
-
+  sleep 10
   PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
   echo "✅ ArgoCD installed"
   echo "   🔑 Admin password: $PASSWORD"
+  kubectl apply -f "$SCRIPT_DIR/argo-application-authorization-server.yml"
+  kubectl apply -f "$SCRIPT_DIR/argo-application-ingress-gateway.yml"
+  kubectl apply -f "$SCRIPT_DIR/argo-application-resource-server.yml"
 fi
+## ingress controller
 
 # ── 4. PostgreSQL ────────────────────────────────────────────────
 echo ""
@@ -89,7 +87,7 @@ if kubectl get deployment postgres -n service-ns &>/dev/null; then
   echo "✅ PostgreSQL already installed, skipping"
 else
   echo "   Deploying PostgreSQL..."
-  kubectl apply -f "$SCRIPT_DIR/postgres-app.yaml"
+  kubectl apply -f "$SCRIPT_DIR/postgres-app.yml"
 
   echo "   Waiting for PostgreSQL to be ready..."
   kubectl rollout status deployment postgres -n service-ns --timeout=120s

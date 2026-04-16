@@ -21,3 +21,14 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  vault:
+    image: hashicorp/vault:latest
+    container_name: vault-dev
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "root"
+      VAULT_ADDR: "http://0.0.0.0:8200"
+      VAULT_LOCAL_CONFIG: '{"disable_mlock": true}'
+      SKIP_SETCAP: "true"

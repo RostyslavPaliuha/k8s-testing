@@ -9,6 +9,7 @@ echo "🧹 Cleaning up Kubernetes resources..."
 echo ""
 echo "🗑️  Cleaning up service resources..."
 kubectl delete -f "$SCRIPT_DIR/ingress.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/ingress-controller.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/hpa.yaml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/service.yaml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/deployment.yaml" --ignore-not-found
