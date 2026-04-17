@@ -4,10 +4,10 @@ metadata:
   name: ingress-gateway-config
   namespace: ingress-gateway-ns
 data:
-  SERVER_PORT: "8080"
+#  SERVER_PORT: "8080"
   SPRING_PROFILES_ACTIVE: "k8s"
-  SPRING_DATA_REDIS_HOST: "redis-cache-master"
-  SPRING_DATA_REDIS_PORT: "6379"
+#  SPRING_DATA_REDIS_HOST: "redis-cache-master"
+#  SPRING_DATA_REDIS_PORT: "6379"
   SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GATEWAY_ISSUER_URI: "http://authorization-server.authorization-server-ns.svc.cluster.local/authorization"
   APP_ROUTE_BACKEND_URL: "http://service.service-ns.svc.cluster.local:8081"
   APP_WEB_CLIENT_URL: "http://web-frontend:5000"
