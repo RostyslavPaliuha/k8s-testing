@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: authorization-server
-          image: authorization-server:v5
+          image: authorization-server:v6
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
