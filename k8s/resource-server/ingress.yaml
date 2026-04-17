@@ -4,14 +4,15 @@ metadata:
   name: service-ingress
   namespace: service-ns
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /resource-server(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: service

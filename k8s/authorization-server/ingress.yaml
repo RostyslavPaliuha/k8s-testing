@@ -3,17 +3,15 @@ kind: Ingress
 metadata:
   name: authorization-server-ingress
   namespace: authorization-server-ns
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-   - http:
+    - http:
         paths:
-              - path: /authorization
-                pathType: Prefix
-                backend:
-                  service:
-                    name: authorization-server
-                    port:
-                      name: http
+          - path: /authorization
+            pathType: Prefix
+            backend:
+              service:
+                name: authorization-server
+                port:
+                  name: http
