@@ -13,7 +13,7 @@ spec:
       values: |
         controller:
           extraArgs:
-            default-ssl-certificate: "ingress-nginx/local.ks.tv" 
+            default-ssl-certificate: "local.ks.tv" 
           service:
             type: LoadBalancer
             ports:
