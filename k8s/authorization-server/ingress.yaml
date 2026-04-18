@@ -8,7 +8,7 @@ spec:
   tls:
     - hosts:
         - clients.dev.vidmind.com
-      secretName: clients.dev.vidmind.com
+      secretName: ingress-nginx.clients.dev.vidmind.com
   rules:
     - host: clients.dev.vidmind.com
       http:
