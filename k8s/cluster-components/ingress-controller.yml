@@ -15,7 +15,8 @@ spec:
           service:
             type: LoadBalancer
             ports:
-              http: 8080    # Maps the external port to 8080
+              http: 80
+              https: 443
           # Ensure it has a specific class name to match your Ingress
           ingressClassResource:
             name: nginx

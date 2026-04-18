@@ -6,7 +6,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: clients.dev.vidmind.com
+      http:
         paths:
           - path: /authorization
             pathType: Prefix
