@@ -5,6 +5,10 @@ metadata:
   namespace: authorization-server-ns
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - clients.dev.vidmind.com
+      secretName: clients.dev.vidmind.com
   rules:
     - host: clients.dev.vidmind.com
       http:

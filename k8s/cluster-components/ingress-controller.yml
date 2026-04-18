@@ -12,12 +12,13 @@ spec:
     helm:
       values: |
         controller:
+          extraArgs:
+            default-ssl-certificate: "ingress-nginx/local.ks.tv" 
           service:
             type: LoadBalancer
             ports:
               http: 80
               https: 443
-          # Ensure it has a specific class name to match your Ingress
           ingressClassResource:
             name: nginx
             enabled: true
