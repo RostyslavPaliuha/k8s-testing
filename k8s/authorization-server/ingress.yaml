@@ -10,6 +10,16 @@ spec:
         - clients.dev.vidmind.com
       secretName: clients.dev.vidmind.com
   rules:
+    - host: local.ks.tv
+      http:
+        paths:
+          - path: /authorization
+            pathType: Prefix
+            backend:
+              service:
+                name: authorization-server
+                port:
+                  name: http
     - host: clients.dev.vidmind.com
       http:
         paths:
