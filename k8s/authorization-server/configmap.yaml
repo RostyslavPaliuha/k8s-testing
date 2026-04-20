@@ -13,6 +13,31 @@ data:
   SPRING_JPA_HIBERNATE_DDL_AUTO: "validate"
   SERVER_FORWARD_HEADERS_STRATEGY: "native"
   SERVER_SERVLET_CONTEXT_PATH: "/authorization"
+  SPRING_APPLICATION_JSON: >-
+    {
+      "spring": {
+        "security": {
+          "oauth2": {
+            "authorizationserver": {
+              "client": {
+                "oidc-client": {
+                  "registration": {
+                    "redirect-uris": ["https://local.ks.tv/login/oauth2/code/oidc-client"],
+                    "post-logout-redirect-uris": ["https://local.ks.tv/"]
+                  }
+                },
+                "gateway": {
+                  "registration": {
+                    "redirect-uris": ["https://local.ks.tv/login/oauth2/code/gateway"],
+                    "post-logout-redirect-uris": ["https://local.ks.tv/"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   SPRING_LIQUIBASE_CHANGE_LOG: "classpath:/db.changelog/master.xml"
   LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: "info"
   LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SESSION_JDBC: "info"

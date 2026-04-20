@@ -14,9 +14,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: local.ks.tv
+      http:
         paths:
-          - path: /resource-server(/|$)(.*)
+          - path: /resource-server
             pathType: ImplementationSpecific
             backend:
               service:

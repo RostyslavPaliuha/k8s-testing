@@ -187,7 +187,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 
 echo ""
 echo "🌐 Access your service:"
-echo "   API:       curl http://localhost:8080/api/v1/data"
+echo "   API:       curl https://local.ks.tv/resource-server/api/v1/data"
 echo "   ArgoCD UI: http://localhost:8082  (see install_argo.sh for port-forward)"
 echo ""
 echo "📊 Monitoring:"

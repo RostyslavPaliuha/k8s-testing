@@ -21,19 +21,19 @@ import { check, sleep } from 'k6';
  *   k6 run --env MAX_VUS=100 --env DURATION=300 load-test.js
  *
  *   # Custom URL
- *   k6 run --env URL=http://localhost:8080/api/v1/data load-test.js
+ *   k6 run --env URL=https://local.ks.tv/resource-server/api/v1/data load-test.js
  *
  *   # Combined
  *   k6 run \
  *     --env MAX_VUS=200 \
  *     --env DURATION=300 \
- *     --env URL=http://localhost:8080/api/v1/data \
+ *     --env URL=https://local.ks.tv/resource-server/api/v1/data \
  *     load-test.js
  *
  * ═══════════════════════════════════════════════════
  * ENVIRONMENT VARIABLES
  * ═══════════════════════════════════════════════════
- *   URL       — Target endpoint  (default: http://localhost:8080/api/v1/data)
+ *   URL       — Target endpoint  (default: https://local.ks.tv/resource-server/api/v1/data)
  *   MAX_VUS   — Peak virtual users (default: 50)
  *   DURATION  — Total test time in seconds, split 3 ways (default: 180)
  *
@@ -57,7 +57,7 @@ import { check, sleep } from 'k6';
  *     • checks             (pass/fail ratio)
  */
 
-const URL = __ENV.URL || 'http://localhost:8080/api/v1/data';
+const URL = __ENV.URL || 'https://local.ks.tv/resource-server/api/v1/data';
 const MAX_VUS = parseInt(__ENV.MAX_VUS || '50', 10);
 const DURATION = parseInt(__ENV.DURATION || '180', 10);
 
