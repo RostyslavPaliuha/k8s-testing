@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ingress-gateway
-          image: gateway:v2
+          image: gateway:v3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
