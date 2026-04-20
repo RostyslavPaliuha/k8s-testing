@@ -112,6 +112,7 @@ fi
 echo "Apply the cluster components"
 kubectl apply -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml"
 wait_for_ingress_nginx
+kubectl apply -f "$SCRIPT_DIR/cluster-components/local.ks.tv.cert-secret.yml"
 
 echo "Apply argocd application definitions"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
