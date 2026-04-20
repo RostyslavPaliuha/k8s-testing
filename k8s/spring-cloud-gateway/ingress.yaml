@@ -5,8 +5,13 @@ metadata:
   namespace: ingress-gateway-ns
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - local.ks.tv
+      secretName: local.ks.tv
   rules:
-    - http:
+    - host: local.ks.tv
+      http:
         paths:
           - path: /
             pathType: Prefix

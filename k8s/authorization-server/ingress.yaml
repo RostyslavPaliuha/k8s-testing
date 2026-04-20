@@ -10,7 +10,8 @@ spec:
         - clients.dev.vidmind.com
       secretName: clients.dev.vidmind.com
   rules:
-    - http:
+    - host: clients.dev.vidmind.com
+      http:
         paths:
           - path: /authorization
             pathType: Prefix
