@@ -15,7 +15,7 @@ spec:
     - host: local.ks.tv
       http:
         paths:
-          - path: /resource-server
+          - path: /public
             pathType: Prefix
             backend:
               service:
