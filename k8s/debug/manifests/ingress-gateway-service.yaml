@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-gateway
+  namespace: ingress-gateway-ns
+  labels:
+    app: ingress-gateway
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: http
+    - port: 9876
+      targetPort: 9876
+      name: debug
+    - port: 9875
+      targetPort: 9875
+      name: jmx
+  selector:
+    app: ingress-gateway
