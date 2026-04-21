@@ -1,32 +1,32 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: authorization-server-ingress
-  namespace: authorization-server-ns
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - clients.dev.vidmind.com
-      secretName: clients.dev.vidmind.com
-  rules:
-    - host: local.ks.tv
-      http:
-        paths:
-          - path: /authorization
-            pathType: Prefix
-            backend:
-              service:
-                name: authorization-server
-                port:
-                  name: http
-    - host: clients.dev.vidmind.com
-      http:
-        paths:
-          - path: /authorization
-            pathType: Prefix
-            backend:
-              service:
-                name: authorization-server
-                port:
-                  name: http
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: authorization-server-ingress
+#  namespace: authorization-server-ns
+#spec:
+#  ingressClassName: nginx
+#  tls:
+#    - hosts:
+#        - clients.dev.vidmind.com
+#      secretName: clients.dev.vidmind.com
+#  rules:
+#    - host: local.ks.tv
+#      http:
+#        paths:
+#          - path: /authorization
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: authorization-server
+#                port:
+#                  name: http
+#    - host: clients.dev.vidmind.com
+#      http:
+#        paths:
+#          - path: /authorization
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: authorization-server
+#                port:
+#                  name: http
