@@ -32,6 +32,7 @@ echo "🗑️  Cleaning up application namespaces..."
 delete_namespace service-ns
 delete_namespace authorization-server-ns
 delete_namespace ingress-gateway-ns
+delete_namespace demo-catalog-ns
 delete_namespace ingress-nginx
 
 echo ""
@@ -42,6 +43,10 @@ kubectl delete clusterrole ingress-nginx --ignore-not-found
 kubectl delete clusterrolebinding ingress-nginx --ignore-not-found
 kubectl delete clusterrole ingress-nginx-admission --ignore-not-found
 kubectl delete clusterrolebinding ingress-nginx-admission --ignore-not-found
+
+echo ""
+echo "🗑️  Cleaning up ArgoCD cluster-scoped resources..."
+kubectl delete -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --ignore-not-found
 
 echo ""
 echo "🗑️  Cleaning up ArgoCD namespace..."
