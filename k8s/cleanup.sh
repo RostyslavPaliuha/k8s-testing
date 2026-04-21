@@ -21,6 +21,7 @@ echo "🧹 Cleaning up Kubernetes resources..."
 
 echo ""
 echo "🗑️  Cleaning up ArgoCD resources..."
+kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml" --ignore-not-found
