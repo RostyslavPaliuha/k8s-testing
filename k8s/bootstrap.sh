@@ -118,6 +118,7 @@ echo "Apply argocd application definitions"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml
 
 ERRORS=0
 
