@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-catalog
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/RostyslavPaliuha/k8s-testing
+    targetRevision: master
+    path: k8s/demo-catalog
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-catalog-ns
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
