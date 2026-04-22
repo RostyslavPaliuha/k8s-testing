@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-test-spa-ingress
+  namespace: auth-test-spa-ns
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - local.ui.ks.tv
+      secretName: local.ui.ks.tv
+  rules:
+    - host: local.ui.ks.tv
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-test-spa-ui
+                port:
+                  name: http

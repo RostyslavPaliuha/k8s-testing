@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-test-spa-ui-deployment
+  namespace: auth-test-spa-ns
+  labels:
+    app: auth-test-spa-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-test-spa-ui
+  template:
+    metadata:
+      labels:
+        app: auth-test-spa-ui
+    spec:
+      containers:
+        - name: ui
+          image: auth-test-spa-ui:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "8080"
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "25m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
