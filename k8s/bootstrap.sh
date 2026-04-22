@@ -89,19 +89,21 @@ else
   kubectl create namespace argocd
 
   echo "   Installing ArgoCD manifests..."
-  #TODO find out how to fix The CustomResourceDefinition "applicationsets.argoproj.io" is invalid: metadata.annotations: Too long: may not be more than 262144 bytes
-  # Use --validate=false to skip validation for the problematic CRD
-  # Note: The command may print validation warnings but should still succeed
-  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --validate=false || true
+  kubectl apply --server-side --force-conflicts -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-  # Verify that the core ArgoCD components were installed despite any validation warnings
   if ! kubectl get deployment argocd-server -n argocd &>/dev/null; then
     echo "❌ ArgoCD server deployment not found - installation may have failed"
     exit 1
   fi
 
+  if ! kubectl get crd applicationsets.argoproj.io &>/dev/null; then
+    echo "❌ ArgoCD ApplicationSet CRD not found - installation may have failed"
+    exit 1
+  fi
+
   wait_for_rollout deployment/argocd-server argocd 300s
   wait_for_rollout deployment/argocd-repo-server argocd 300s
+  wait_for_rollout deployment/argocd-applicationset-controller argocd 300s
   wait_for_rollout statefulset/argocd-application-controller argocd 300s
   sleep 10
   PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)

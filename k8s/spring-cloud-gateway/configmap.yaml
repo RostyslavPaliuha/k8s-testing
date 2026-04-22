@@ -5,8 +5,3 @@ metadata:
   namespace: ingress-gateway-ns
 data:
   SPRING_PROFILES_ACTIVE: "k8s"
-  SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GATEWAY_REDIRECT_URI: "https://local.ks.tv/login/oauth2/code/gateway"
-  APP_ROUTE_BACKEND_URL: "http://service.service-ns.svc.cluster.local:8081"
-  APP_WEB_CLIENT_URL: "http://web-frontend:5000"
-  APP_SERVER_SHUTDOWN: "graceful"
-  LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_GATEWAY_ROUTE: "TRACE"

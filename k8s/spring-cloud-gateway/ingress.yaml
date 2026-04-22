@@ -11,6 +11,10 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - local.ks.tv
+      secretName: local.ks.tv
   rules:
     - host: local.ks.tv
       http:
