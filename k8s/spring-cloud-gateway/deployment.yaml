@@ -44,8 +44,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: ingress-gateway-config
-            - secretRef:
-                name: ingress-gateway-secret
           resources:
             requests:
               memory: "512Mi"
