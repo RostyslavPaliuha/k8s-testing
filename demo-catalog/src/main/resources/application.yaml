@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: catalog
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: localhost:9000
+server:
+  port: 8083
+logging:
+  level:
+    web: trace
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

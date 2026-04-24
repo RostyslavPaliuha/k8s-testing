@@ -1,0 +1,1630 @@
+{
+  "assets" : [ {
+    "name" : "Життя",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE5/6834b3304d14c90b9a76444f",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2017,
+    "genres" : [ {
+      "value" : "SCIFI",
+      "locale" : "Фантастика"
+    }, {
+      "value" : "HORROR",
+      "locale" : "Жахи"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    } ],
+    "genresList" : [ "Фантастика", "Жахи", "Трилер" ],
+    "likeCount" : 175,
+    "dislikeCount" : 17,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "TR9AQixC",
+    "shortPlot" : "Група дослідників із міжнародного космічного корабля виявляє життя на Марсі. Вони ще не підозрюють, які події спричинить їх відкриття.",
+    "isPopularProgramVod" : false,
+    "slug" : "6834b3304d14c90b9a76444f-2017-zhittya",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 6238,
+    "introEnd" : 66,
+    "closingCreditsStart" : 5675,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedSubtitles" : [ {
+      "languageCode" : "ukr",
+      "localizedLanguage" : "Українська"
+    }, {
+      "languageCode" : "eng",
+      "localizedLanguage" : "Англійська"
+    }, {
+      "languageCode" : "rus",
+      "localizedLanguage" : "Російська"
+    }, {
+      "languageCode" : "ger",
+      "localizedLanguage" : "Німецька"
+    } ],
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 6.6,
+      "lastUpdateTime" : 1772192829829,
+      "numberOfVotes" : 275453
+    } ],
+    "announce" : false,
+    "assetId" : "6834b3304d14c90b9a76444f",
+    "tags" : [ "sony_movies", "uat", "downloadable", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Той, хто біжить по лезу 2049",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE5/6838dcb57df4426d6db805d8",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2017,
+    "genres" : [ {
+      "value" : "SCIFI",
+      "locale" : "Фантастика"
+    }, {
+      "value" : "ACTION",
+      "locale" : "Бойовик"
+    }, {
+      "value" : "DETECTIVE",
+      "locale" : "Детектив"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    } ],
+    "genresList" : [ "Фантастика", "Бойовик", "Детектив", "Трилер" ],
+    "likeCount" : 516,
+    "dislikeCount" : 77,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "VR618GFu",
+    "shortPlot" : "У футуристичному Лос-Анджелесі блейд-раннер К розслідує небезпечний секрет, що може зруйнувати суспільство. Його шлях веде до зниклого 30 років тому Ріка Декарда — єдиного, хто знає правду.",
+    "isPopularProgramVod" : false,
+    "slug" : "6838dcb57df4426d6db805d8-2017-toj-hto-bizhit-po-lezu-2049",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 9807,
+    "introEnd" : 48,
+    "closingCreditsStart" : 9172,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedSubtitles" : [ {
+      "languageCode" : "ukr",
+      "localizedLanguage" : "Українська"
+    }, {
+      "languageCode" : "rus",
+      "localizedLanguage" : "Російська"
+    }, {
+      "languageCode" : "eng",
+      "localizedLanguage" : "Англійська"
+    }, {
+      "languageCode" : "fra",
+      "localizedLanguage" : "Французька"
+    }, {
+      "languageCode" : "ger",
+      "localizedLanguage" : "Німецька"
+    }, {
+      "languageCode" : "spa",
+      "localizedLanguage" : "Іспанська"
+    } ],
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 8.0,
+      "lastUpdateTime" : 1771324481982,
+      "numberOfVotes" : 744614
+    } ],
+    "announce" : false,
+    "assetId" : "6838dcb57df4426d6db805d8",
+    "tags" : [ "sony_movies", "subtitle_movie_ru", "subtitle_movie_CG", "subtitle_movie_en", "downloadable", "subtitle_movie_uk", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Батьківські збори",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/693002aa4eb474f8d09ac120",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2025,
+    "genres" : [ {
+      "value" : "COMEDY",
+      "locale" : "Комедія"
+    } ],
+    "genresList" : [ "Комедія" ],
+    "likeCount" : 1453,
+    "dislikeCount" : 285,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "d2LgYmdR",
+    "shortPlot" : "Батьківські збори перетворюються на хаотичну боротьбу зі звинуваченнями, тиском і шантажем заради перемоги власної дитини на шкільних президентських виборах.",
+    "isPopularProgramVod" : false,
+    "slug" : "693002aa4eb474f8d09ac120-2025-batkivski-zbori",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "12",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 5546,
+    "introEnd" : 23,
+    "closingCreditsStart" : 5354,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 6.1,
+      "lastUpdateTime" : 1770927785042,
+      "numberOfVotes" : 207
+    } ],
+    "announce" : false,
+    "assetId" : "693002aa4eb474f8d09ac120",
+    "tags" : [ "uat", "indep", "exclusively", "downloadable", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Гренландія",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE2/60f1805c4974676af9875720",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2020,
+    "genres" : [ {
+      "value" : "ACTION",
+      "locale" : "Бойовик"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    } ],
+    "genresList" : [ "Бойовик", "Драма", "Трилер" ],
+    "likeCount" : 1426,
+    "dislikeCount" : 43,
+    "checkInCount" : 1,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "pRZKq992",
+    "shortPlot" : "Фільм-катастрофа «Гренландія» розповідає про катаклізм, який може знищити людство.\nЗемля у небезпеці. Усі новини повідомляють про швидке наближення метеориту. Проте запевняють: хвилюватися не потрібно",
+    "isPopularProgramVod" : false,
+    "slug" : "60f1805c4974676af9875720-2020-grenlandiya",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "12",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 7167,
+    "introEnd" : 59,
+    "closingCreditsStart" : 6925,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 6.4,
+      "lastUpdateTime" : 1772719678738,
+      "numberOfVotes" : 164943
+    } ],
+    "announce" : false,
+    "assetId" : "60f1805c4974676af9875720",
+    "tags" : [ "uat", "newkino2020", "newrent", "men", "bond", "rec", "doomsday", "newsub", "movies_ivi" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Дюна: Частина друга",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE4/65e6edf2e4b0ba11756e8378",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2024,
+    "genres" : [ {
+      "value" : "ACTION",
+      "locale" : "Бойовик"
+    }, {
+      "value" : "SCIFI",
+      "locale" : "Фантастика"
+    }, {
+      "value" : "ADVENTURE",
+      "locale" : "Пригоди"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    } ],
+    "genresList" : [ "Бойовик", "Фантастика", "Пригоди", "Драма" ],
+    "likeCount" : 962,
+    "dislikeCount" : 136,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "shortPlot" : "Пол Атрід об'єднується з Чані та фременами, прагнучи помститися змовникам, які знищили його сім'ю.",
+    "isPopularProgramVod" : false,
+    "slug" : "65e6edf2e4b0ba11756e8378-2024-dyuna-chastina-druga",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 4,
+    "watched" : true,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 9945,
+    "introEnd" : 50,
+    "closingCreditsStart" : 9462,
+    "audioTrackLanguageCode" : "uk",
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_EST",
+      "timeLeft" : 251627773989190,
+      "productName" : "All TVOD",
+      "viewingPermitted" : true,
+      "productId" : "5f624a8e35f44853abab724e"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 8.4,
+      "lastUpdateTime" : 1772120746403,
+      "numberOfVotes" : 718629
+    } ],
+    "announce" : false,
+    "assetId" : "65e6edf2e4b0ba11756e8378",
+    "tags" : [ "uat", "wb", "downloadable", "movies_rating", "original", "purchase", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Зірки за обміном",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE2/627d06948c140574983ce551",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_3_1_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_3_1_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_3_1_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2021,
+    "genres" : [ {
+      "value" : "COMEDY",
+      "locale" : "Комедія"
+    } ],
+    "genresList" : [ "Комедія" ],
+    "likeCount" : 1880,
+    "dislikeCount" : 106,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "D2UbyzIt",
+    "shortPlot" : "Сценічні суперники Поля Малякова і Фома Михайловський міняються тілами та змушені прожити життя одне одного. Щоб повернути все назад, їм доведеться розв’язати чужі сімейні й любовні проблеми.",
+    "isPopularProgramVod" : false,
+    "slug" : "627d06948c140574983ce551-2021-zirki-za-obminom",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "12",
+      "type" : "MCRF"
+    },
+    "promotion" : {
+      "airingEndDate" : "20220531",
+      "airingStartDate" : "20220513",
+      "title" : "Зірки за обміном",
+      "description" : "Комедія • 2021"
+    },
+    "promotionFeaturedType" : "PROMOTION",
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 5183,
+    "introEnd" : 24,
+    "closingCreditsStart" : 4949,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 4.6,
+      "lastUpdateTime" : 1771327934755,
+      "numberOfVotes" : 134
+    } ],
+    "announce" : false,
+    "assetId" : "627d06948c140574983ce551",
+    "tags" : [ "newyear2022", "uat", "indep", "friends", "downloadable", "viewers_choice", "pizza", "purchase", "movies_ivi", "new_kino", "blond" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Каскадер",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE4/66c83350e4b0844990ba9432",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2024,
+    "genres" : [ {
+      "value" : "ACTION",
+      "locale" : "Бойовик"
+    }, {
+      "value" : "COMEDY",
+      "locale" : "Комедія"
+    }, {
+      "value" : "MELODRAMA",
+      "locale" : "Мелодрама"
+    } ],
+    "genresList" : [ "Бойовик", "Комедія", "Мелодрама" ],
+    "likeCount" : 436,
+    "dislikeCount" : 70,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "ktBSZvh2",
+    "shortPlot" : "Колишньому каскадеру Колту необхідно розшукати зниклу кінозірку, розгадати підлу змову і повернути кохання всього життя. Хіба може щось піти не так?",
+    "isPopularProgramVod" : false,
+    "slug" : "66c83350e4b0844990ba9432-2024-kaskader",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "12",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 7620,
+    "introEnd" : 47,
+    "closingCreditsStart" : 7170,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_EST",
+      "timeLeft" : 251627773989190,
+      "productName" : "All TVOD",
+      "viewingPermitted" : true,
+      "productId" : "5f624a8e35f44853abab724e"
+    },
+    "localizedSubtitles" : [ {
+      "languageCode" : "ukr",
+      "localizedLanguage" : "Українська"
+    }, {
+      "languageCode" : "rus",
+      "localizedLanguage" : "Російська"
+    } ],
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 6.8,
+      "lastUpdateTime" : 1773755821660,
+      "numberOfVotes" : 255285
+    } ],
+    "announce" : false,
+    "assetId" : "66c83350e4b0844990ba9432",
+    "tags" : [ "uat", "hit", "downloadable", "universal_movies", "original", "purchase", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Суперсила",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE4/655dd360e4b0db12ba4353dc",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_3_1_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_3_1_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_3_1_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2023,
+    "genres" : [ {
+      "value" : "DOCUMENTAL",
+      "locale" : "Документальний"
+    } ],
+    "genresList" : [ "Документальний" ],
+    "likeCount" : 1537,
+    "dislikeCount" : 123,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "VR6gdVYu",
+    "shortPlot" : "Документальний фільм розповідає про вторгнення росії в Україну та наступні за цими події.",
+    "isPopularProgramVod" : false,
+    "slug" : "655dd360e4b0db12ba4353dc-2023-supersila",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "12",
+      "type" : "MCRF"
+    },
+    "promotion" : {
+      "airingEndDate" : "20240115",
+      "airingStartDate" : "20231229",
+      "title" : "Суперсила",
+      "description" : "Документальний • 2023"
+    },
+    "promotionFeaturedType" : "NONE",
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 7066,
+    "introEnd" : 18,
+    "closingCreditsStart" : 6704,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 6.0,
+      "lastUpdateTime" : 1769694523786,
+      "numberOfVotes" : 1881
+    } ],
+    "announce" : false,
+    "assetId" : "655dd360e4b0db12ba4353dc",
+    "tags" : [ "uat", "doc", "documental", "exclusively", "downloadable", "top_doc", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Полонянки",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE5/664665767254dd44bd3d6e05",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      } ]
+    }, {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE4/664665767254dd44bd3d6e05",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2013,
+    "genres" : [ {
+      "value" : "DETECTIVE",
+      "locale" : "Детектив"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    }, {
+      "value" : "CRIME",
+      "locale" : "Кримінал"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    } ],
+    "genresList" : [ "Детектив", "Трилер", "Кримінал", "Драма" ],
+    "likeCount" : 967,
+    "dislikeCount" : 51,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "dtrxFZQt",
+    "shortPlot" : "Коли дочку Келлера Довера викрадають, він вирішує взяти правосуддя у свої руки та знайти винного.",
+    "isPopularProgramVod" : false,
+    "slug" : "664665767254dd44bd3d6e05-2013-polonyanki",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 8717,
+    "introEnd" : 34,
+    "closingCreditsStart" : 8393,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 8.2,
+      "lastUpdateTime" : 1771934289238,
+      "numberOfVotes" : 922474
+    } ],
+    "announce" : false,
+    "assetId" : "664665767254dd44bd3d6e05",
+    "tags" : [ "uat", "lionsgate_movies", "downloadable", "vlasna_ozvuchka", "original", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Параноя",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/69bbe3239454e15d2ab61235",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2007,
+    "genres" : [ {
+      "value" : "CRIME",
+      "locale" : "Кримінал"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    }, {
+      "value" : "MYSTERY",
+      "locale" : "Містика"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    } ],
+    "genresList" : [ "Кримінал", "Драма", "Містика", "Трилер" ],
+    "likeCount" : 9,
+    "dislikeCount" : 0,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "LRSrwBUu",
+    "shortPlot" : "Підліток під домашнім арештом починає стежити за сусідами і підозрює одного з них у злочині. Разом із друзями він намагається знайти докази.",
+    "isPopularProgramVod" : false,
+    "slug" : "69bbe3239454e15d2ab61235-2007-paranoya",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 6014,
+    "introEnd" : 41,
+    "closingCreditsStart" : 5712,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 6.8,
+      "lastUpdateTime" : 1773995505232,
+      "numberOfVotes" : 273576
+    } ],
+    "announce" : false,
+    "assetId" : "69bbe3239454e15d2ab61235",
+    "tags" : [ "uat", "downloadable", "movies_ivi", "new_kino", "mtg_movies" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Люблю тебе, чувак",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/69ba9fc1c27488fb363407dc",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2009,
+    "genres" : [ {
+      "value" : "COMEDY",
+      "locale" : "Комедія"
+    }, {
+      "value" : "MELODRAMA",
+      "locale" : "Мелодрама"
+    } ],
+    "genresList" : [ "Комедія", "Мелодрама" ],
+    "likeCount" : 10,
+    "dislikeCount" : 1,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "shortPlot" : "Пітер шукає шафера й знаходить друга, який змінює його життя та змушує переглянути рішення про шлюб.",
+    "isPopularProgramVod" : false,
+    "slug" : "69ba9fc1c27488fb363407dc-2009-lyublyu-tebe-chuvak",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 6286,
+    "introEnd" : 41,
+    "closingCreditsStart" : 5918,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 7.0,
+      "lastUpdateTime" : 1773846692065,
+      "numberOfVotes" : 225192
+    } ],
+    "announce" : false,
+    "assetId" : "69ba9fc1c27488fb363407dc",
+    "tags" : [ "uat", "downloadable", "original", "movies_ivi", "new_kino", "mtg_movies" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Без жалю",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/662fb0d2c4b4c939fc56ec7f",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      } ]
+    }, {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE4/662fb0d2c4b4c939fc56ec7f",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2021,
+    "genres" : [ {
+      "value" : "ACTION",
+      "locale" : "Бойовик"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    }, {
+      "value" : "MILITARY",
+      "locale" : "Воєнний"
+    }, {
+      "value" : "EKRANIZATSII_IVI",
+      "locale" : "Екранізації"
+    } ],
+    "genresList" : [ "Бойовик", "Трилер", "Воєнний", "Екранізації" ],
+    "likeCount" : 1655,
+    "dislikeCount" : 244,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "GREqcfIC",
+    "shortPlot" : "Колеги та дружина Джона Келлі вбиті. Чоловік, який дивом залишився живим, вирішує знайти злочинців і помститися.",
+    "isPopularProgramVod" : false,
+    "slug" : "662fb0d2c4b4c939fc56ec7f-2021-bez-zhalyu",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 6284,
+    "introEnd" : 28,
+    "closingCreditsStart" : 5956,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedSubtitles" : [ {
+      "languageCode" : "rus",
+      "localizedLanguage" : "Російська"
+    }, {
+      "languageCode" : "eng",
+      "localizedLanguage" : "Англійська"
+    }, {
+      "languageCode" : "pol",
+      "localizedLanguage" : "Польська"
+    }, {
+      "languageCode" : "spa",
+      "localizedLanguage" : "Іспанська"
+    } ],
+    "localizedAudioTracksLanguages" : [ "Українська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 5.8,
+      "lastUpdateTime" : 1772187930951,
+      "numberOfVotes" : 70373
+    } ],
+    "announce" : false,
+    "assetId" : "662fb0d2c4b4c939fc56ec7f",
+    "tags" : [ "uat", "amazon_movies", "subtitle_movie_ru", "subtitle_movie_CG", "subtitle_movie_en", "exclusively", "downloadable", "vlasna_ozvuchka", "original", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Нюрнберг",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/694eba5af87410094e97aa6a",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2025,
+    "genres" : [ {
+      "value" : "HISTORICAL",
+      "locale" : "Історичний"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    }, {
+      "value" : "BIOGRAPHY",
+      "locale" : "Біографічний"
+    } ],
+    "genresList" : [ "Історичний", "Драма", "Біографічний" ],
+    "likeCount" : 1180,
+    "dislikeCount" : 40,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "H2qjlSeC",
+    "shortPlot" : "Дуглас Келлі, психіатр часів Другої світової, аналізує розум нацистських лідерів, зокрема Герінга, що може допомогти або поставити під сумнів Нюрнберзький трибунал.",
+    "isPopularProgramVod" : false,
+    "slug" : "694eba5af87410094e97aa6a-2025-nyurnberg",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 8541,
+    "introEnd" : 40,
+    "closingCreditsStart" : 8005,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 7.4,
+      "lastUpdateTime" : 1772029004036,
+      "numberOfVotes" : 62970
+    } ],
+    "announce" : false,
+    "assetId" : "694eba5af87410094e97aa6a",
+    "tags" : [ "uat", "downloadable", "adastra_movies", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Коли ти вийдеш заміж?",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE5/67f83f4be4b02b186b866925",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2025,
+    "genres" : [ {
+      "value" : "COMEDY",
+      "locale" : "Комедія"
+    }, {
+      "value" : "MELODRAMA",
+      "locale" : "Мелодрама"
+    } ],
+    "genresList" : [ "Комедія", "Мелодрама" ],
+    "likeCount" : 3424,
+    "dislikeCount" : 791,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "H24qyr6t",
+    "shortPlot" : "Після розриву з нареченим Ксенія вирушає до моря, де натрапляє на справжній шедевр — картину Гогена «Коли ти вийдеш заміж?». Це відкриття кидає її у вир пригод і змінює погляд на мистецтво та життя.",
+    "isPopularProgramVod" : false,
+    "slug" : "67f83f4be4b02b186b866925-2025-koli-ti-vijdesh-zamizh",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "12",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 5866,
+    "introEnd" : 6,
+    "closingCreditsStart" : 5747,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_EST",
+      "timeLeft" : 251627773989190,
+      "productName" : "All TVOD",
+      "viewingPermitted" : true,
+      "productId" : "5f624a8e35f44853abab724e"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 4.8,
+      "lastUpdateTime" : 1772116760133,
+      "numberOfVotes" : 230
+    } ],
+    "announce" : false,
+    "assetId" : "67f83f4be4b02b186b866925",
+    "tags" : [ "4k_movies", "uat", "indep", "downloadable", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Тисяча слів",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/69b025da63b40f8bc15abc8b",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2012,
+    "genres" : [ {
+      "value" : "COMEDY",
+      "locale" : "Комедія"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    }, {
+      "value" : "FANTASY",
+      "locale" : "Фентезі"
+    } ],
+    "genresList" : [ "Комедія", "Драма", "Фентезі" ],
+    "likeCount" : 58,
+    "dislikeCount" : 2,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "UCnJch1C",
+    "shortPlot" : "Головний герой - базіка, яких світло не бачив. І ось одного разу цей балакучий персонаж дізнається, що йому залишилося вимовити вголос рівно тисячу слів, після чого він обов'язково помре...",
+    "isPopularProgramVod" : false,
+    "slug" : "69b025da63b40f8bc15abc8b-2012-tisyacha-sliv",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 5260,
+    "introEnd" : 21,
+    "closingCreditsStart" : 4992,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 5.9,
+      "lastUpdateTime" : 1773154747751,
+      "numberOfVotes" : 47372
+    } ],
+    "announce" : false,
+    "assetId" : "69b025da63b40f8bc15abc8b",
+    "tags" : [ "uat", "downloadable", "movies_ivi", "new_kino", "mtg_movies" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Острів проклятих",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE5/688247493f1447f80d77aaac",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2010,
+    "genres" : [ {
+      "value" : "DETECTIVE",
+      "locale" : "Детектив"
+    }, {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    }, {
+      "value" : "THRILLER",
+      "locale" : "Трилер"
+    } ],
+    "genresList" : [ "Детектив", "Драма", "Трилер" ],
+    "likeCount" : 351,
+    "dislikeCount" : 15,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "H2qjWw1C",
+    "shortPlot" : "Маршал Тедді розслідує зникнення пацієнтки на острові-психлікарні, але поступово сам починає втрачати зв’язок з реальністю. Шокуюча правда змушує сумніватися у всьому.",
+    "isPopularProgramVod" : false,
+    "slug" : "688247493f1447f80d77aaac-2010-ostriv-proklyatih",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 7940,
+    "introEnd" : 55,
+    "closingCreditsStart" : 7513,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 8.2,
+      "lastUpdateTime" : 1773664526007,
+      "numberOfVotes" : 1631660
+    } ],
+    "announce" : false,
+    "assetId" : "688247493f1447f80d77aaac",
+    "tags" : [ "uat", "ufd_movies", "downloadable", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Геракл: Початок легенди",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/69b82ae7725490f1426c726b",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2014,
+    "genres" : [ {
+      "value" : "FANTASY",
+      "locale" : "Фентезі"
+    }, {
+      "value" : "ACTION",
+      "locale" : "Бойовик"
+    }, {
+      "value" : "ADVENTURE",
+      "locale" : "Пригоди"
+    } ],
+    "genresList" : [ "Фентезі", "Бойовик", "Пригоди" ],
+    "likeCount" : 27,
+    "dislikeCount" : 3,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "providerName" : "OVVA",
+    "providerExternalId" : "UCncBM82",
+    "shortPlot" : "Геракл — син Зевса, наділений великою силою. Після зради він стає рабом-гладіатором, але повертається, щоб повстати проти тирана і виконати своє призначення.",
+    "isPopularProgramVod" : false,
+    "slug" : "69b82ae7725490f1426c726b-2014-gerakl-pochatok-legendi",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 5918,
+    "introEnd" : 40,
+    "closingCreditsStart" : 5395,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 4.3,
+      "lastUpdateTime" : 1773742524972,
+      "numberOfVotes" : 57625
+    } ],
+    "announce" : false,
+    "assetId" : "69b82ae7725490f1426c726b",
+    "tags" : [ "uat", "topfilm_movies", "original", "movies_ivi", "new_kino" ],
+    "assetType" : "MOVIE"
+  }, {
+    "name" : "Бруталіст",
+    "imagesSource" : [ {
+      "url" : "https://cdn-ksvod.kyivstar.ua/content/HLS/VOD/IMAGE6/69b40beca6d4d52f856e20ff",
+      "imgFiles" : [ {
+        "fileName" : "IMAGE_16_9_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_M.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_L.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_M.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XXL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_XL.jpg"
+      }, {
+        "fileName" : "IMAGE_2_3_S.jpg"
+      }, {
+        "fileName" : "IMAGE_16_9_XL.jpg"
+      } ]
+    } ],
+    "releaseDate" : 2024,
+    "genres" : [ {
+      "value" : "DRAMA",
+      "locale" : "Драма"
+    } ],
+    "genresList" : [ "Драма" ],
+    "likeCount" : 112,
+    "dislikeCount" : 26,
+    "checkInCount" : 0,
+    "notRecommended" : false,
+    "externalEnabled" : true,
+    "protectedAsset" : false,
+    "vodMetaData" : {
+      "audioTracks" : {
+        "uk" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "ru" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a",
+        "en" : "https://d165nuvlg3wyyq.cloudfront.net/internal-sc135/AUDIOTRACKS/silence.m4a"
+      }
+    },
+    "isPromoAsset" : false,
+    "shortPlot" : "Після Голокосту архітектор Ласло Тот емігрує до США, де успіх, травми та темні таємниці змушують його стикнутися з власними межами, а його головна споруда приховує глибоку правду про пережите.",
+    "isPopularProgramVod" : false,
+    "slug" : "69b40beca6d4d52f856e20ff-2024-brutalist",
+    "subscriberTypes" : [ "ADULT" ],
+    "lastLocation" : 0,
+    "watched" : false,
+    "downloadable" : false,
+    "deactivated" : false,
+    "parentalRating" : {
+      "value" : "16",
+      "type" : "MCRF"
+    },
+    "onWatchList" : false,
+    "pinValidated" : false,
+    "duration" : 12073,
+    "introEnd" : 100,
+    "closingCreditsStart" : 11780,
+    "isGeoBlocked" : false,
+    "purchased" : true,
+    "paymentLabel" : {
+      "type" : "PURCHASED_SVOD",
+      "timeLeft" : 3147402502697,
+      "productName" : "Преміум HD (Для Demo акаунтів)",
+      "viewingPermitted" : true,
+      "productId" : "55f14f94e4b0781039bdb342"
+    },
+    "localizedAudioTracksLanguages" : [ "Українська", "Російська", "Англійська" ],
+    "ratings" : [ {
+      "movieId" : "",
+      "ratingProviderType" : "IMDB",
+      "movieRating" : 7.2,
+      "lastUpdateTime" : 1773664084513,
+      "numberOfVotes" : 134763
+    } ],
+    "announce" : false,
+    "assetId" : "69b40beca6d4d52f856e20ff",
+    "tags" : [ "uat", "hit", "oscar", "downloadable", "oscars", "original", "movies_ivi", "new_kino", "mtg_movies" ],
+    "assetType" : "MOVIE"
+  } ]
+}

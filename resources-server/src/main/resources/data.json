@@ -1,0 +1,227 @@
+[
+  {
+    "_id": "69c5a351d8f3759b928d3ed2",
+    "index": 0,
+    "guid": "8047f0bb-710d-44d6-a0ec-fcee3b5c1ceb",
+    "isActive": true,
+    "balance": "$3,519.54",
+    "picture": "http://placehold.it/32x32",
+    "age": 32,
+    "eyeColor": "green",
+    "name": "Brandy Miles",
+    "gender": "female",
+    "company": "GUSHKOOL",
+    "email": "brandymiles@gushkool.com",
+    "phone": "+1 (982) 403-2714",
+    "address": "914 National Drive, Lafferty, North Carolina, 1598",
+    "about": "Aliquip qui ipsum do est. Aute adipisicing anim aute et nisi laboris aliqua ea sunt occaecat aliqua reprehenderit. Irure velit dolor est ullamco eiusmod enim dolor elit velit non do labore elit sit. Ad pariatur consectetur consequat aliqua id minim id exercitation non.\r\n",
+    "registered": "2017-07-01T04:35:56 -02:00",
+    "latitude": 53.486814,
+    "longitude": 128.726907,
+    "tags": [
+      "ut",
+      "anim",
+      "ullamco",
+      "adipisicing",
+      "magna",
+      "est",
+      "enim"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Maura Jacobson"
+      },
+      {
+        "id": 1,
+        "name": "Pearl Shaffer"
+      },
+      {
+        "id": 2,
+        "name": "Lara Contreras"
+      }
+    ],
+    "greeting": "Hello, Brandy Miles! You have 4 unread messages.",
+    "favoriteFruit": "banana"
+  },
+  {
+    "_id": "69c5a351de03dec7fadbb79e",
+    "index": 1,
+    "guid": "99e92e4f-2008-4674-b956-e64bdaacddc9",
+    "isActive": true,
+    "balance": "$2,662.57",
+    "picture": "http://placehold.it/32x32",
+    "age": 27,
+    "eyeColor": "blue",
+    "name": "Boone Robbins",
+    "gender": "male",
+    "company": "INFOTRIPS",
+    "email": "boonerobbins@infotrips.com",
+    "phone": "+1 (893) 569-2348",
+    "address": "577 Ash Street, Steinhatchee, Northern Mariana Islands, 6276",
+    "about": "Adipisicing id eiusmod id dolore nulla sunt ad reprehenderit occaecat pariatur proident laborum aliqua. Sunt occaecat elit proident nostrud laboris id tempor aliqua esse. Tempor tempor laborum anim nostrud veniam et cillum eiusmod magna culpa et veniam duis culpa. Sit adipisicing dolor in enim qui labore incididunt nulla elit sunt eiusmod adipisicing. Non elit ea culpa ea magna deserunt labore occaecat et. Fugiat aliquip exercitation ex aliquip aute dolor proident consectetur aliqua fugiat laboris duis nisi. Enim et aute ea mollit.\r\n",
+    "registered": "2023-06-22T12:34:09 -02:00",
+    "latitude": -20.548272,
+    "longitude": -132.914253,
+    "tags": [
+      "reprehenderit",
+      "elit",
+      "velit",
+      "mollit",
+      "dolor",
+      "Lorem",
+      "in"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Boyle Russell"
+      },
+      {
+        "id": 1,
+        "name": "Casey Gallegos"
+      },
+      {
+        "id": 2,
+        "name": "Blackburn Moran"
+      }
+    ],
+    "greeting": "Hello, Boone Robbins! You have 8 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "69c5a351d4b7717e53029943",
+    "index": 2,
+    "guid": "1ad89e68-dfe9-461c-b352-cc6a27866847",
+    "isActive": true,
+    "balance": "$3,551.94",
+    "picture": "http://placehold.it/32x32",
+    "age": 21,
+    "eyeColor": "blue",
+    "name": "Torres Ware",
+    "gender": "male",
+    "company": "BIOHAB",
+    "email": "torresware@biohab.com",
+    "phone": "+1 (940) 483-2307",
+    "address": "808 Irwin Street, Gadsden, Minnesota, 517",
+    "about": "Cupidatat pariatur elit in est sint ut dolore. Adipisicing ut officia dolor consectetur commodo occaecat incididunt non cupidatat officia officia excepteur ad. Culpa eu voluptate laboris ipsum ea id veniam officia irure. Fugiat consectetur occaecat esse dolor Lorem adipisicing nulla nostrud. Voluptate ad aliqua deserunt irure culpa magna nisi quis laborum est commodo id aliqua nulla. Minim et aliqua nulla enim officia deserunt magna minim velit nulla ea id.\r\n",
+    "registered": "2021-05-09T08:50:55 -02:00",
+    "latitude": 6.373644,
+    "longitude": -101.316232,
+    "tags": [
+      "laborum",
+      "aliquip",
+      "exercitation",
+      "nisi",
+      "occaecat",
+      "laboris",
+      "labore"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Althea Carr"
+      },
+      {
+        "id": 1,
+        "name": "Landry Reilly"
+      },
+      {
+        "id": 2,
+        "name": "Meredith England"
+      }
+    ],
+    "greeting": "Hello, Torres Ware! You have 4 unread messages.",
+    "favoriteFruit": "strawberry"
+  },
+  {
+    "_id": "69c5a3519dc67a105f58c096",
+    "index": 3,
+    "guid": "0861856f-19a3-4d6c-b40a-551560d36d32",
+    "isActive": true,
+    "balance": "$1,667.71",
+    "picture": "http://placehold.it/32x32",
+    "age": 35,
+    "eyeColor": "green",
+    "name": "Erin Stewart",
+    "gender": "female",
+    "company": "TERRAGEN",
+    "email": "erinstewart@terragen.com",
+    "phone": "+1 (905) 466-3221",
+    "address": "966 Newel Street, Valmy, New York, 5073",
+    "about": "Ullamco aute laboris elit duis deserunt. Laborum est dolor nostrud in magna excepteur et esse nisi enim incididunt proident anim sunt. Minim Lorem magna culpa aliquip occaecat irure velit fugiat veniam dolore nostrud laborum. Aliqua quis quis excepteur occaecat sunt adipisicing irure ut ut do ullamco fugiat anim in. Aliquip aliquip eiusmod duis culpa mollit. Quis dolore non reprehenderit cillum laboris. Non ex cillum aliqua anim quis deserunt.\r\n",
+    "registered": "2021-08-26T07:41:15 -02:00",
+    "latitude": 18.553002,
+    "longitude": 4.508914,
+    "tags": [
+      "occaecat",
+      "consequat",
+      "ut",
+      "eu",
+      "enim",
+      "ea",
+      "excepteur"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Mitzi Floyd"
+      },
+      {
+        "id": 1,
+        "name": "Jewell Sosa"
+      },
+      {
+        "id": 2,
+        "name": "Shawn Kim"
+      }
+    ],
+    "greeting": "Hello, Erin Stewart! You have 2 unread messages.",
+    "favoriteFruit": "banana"
+  },
+  {
+    "_id": "69c5a35159405ee7f024b96a",
+    "index": 4,
+    "guid": "f4eb5ec7-b15d-4c6d-9f0e-c325b887b8bb",
+    "isActive": false,
+    "balance": "$2,699.35",
+    "picture": "http://placehold.it/32x32",
+    "age": 30,
+    "eyeColor": "blue",
+    "name": "Britt Lindsey",
+    "gender": "male",
+    "company": "WEBIOTIC",
+    "email": "brittlindsey@webiotic.com",
+    "phone": "+1 (968) 521-3642",
+    "address": "552 Kenilworth Place, Cowiche, New Hampshire, 4408",
+    "about": "Sit ex pariatur eu dolore velit sunt eiusmod consequat consequat tempor. Lorem excepteur est irure sunt in qui deserunt sint veniam nisi Lorem. Ipsum sunt veniam do eiusmod deserunt voluptate qui dolor do eu commodo cillum exercitation. Ut sit tempor ullamco consectetur eiusmod sit fugiat esse esse esse. Enim commodo ad id eu. Ea eu pariatur quis in do enim qui ea proident reprehenderit. Nulla exercitation officia cupidatat aliquip.\r\n",
+    "registered": "2018-03-12T08:19:36 -01:00",
+    "latitude": 48.309104,
+    "longitude": 93.962468,
+    "tags": [
+      "in",
+      "nisi",
+      "cupidatat",
+      "nisi",
+      "anim",
+      "ex",
+      "ex"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Diaz Stephenson"
+      },
+      {
+        "id": 1,
+        "name": "Rocha Bradford"
+      },
+      {
+        "id": 2,
+        "name": "Rachel Frye"
+      }
+    ],
+    "greeting": "Hello, Britt Lindsey! You have 10 unread messages.",
+    "favoriteFruit": "strawberry"
+  }
+]
