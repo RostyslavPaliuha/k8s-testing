@@ -6,7 +6,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: localhost:9000
+          issuer-uri: http://localhost:9000/authorization
+          jwk-set-uri: http://localhost:9000/authorization/oauth2/jwks
 server:
   port: 8083
 logging:

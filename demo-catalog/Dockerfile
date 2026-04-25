@@ -1,18 +1,17 @@
 # Stage 1: Build the application
-FROM eclipse-temurin:25-jdk AS builder
+FROM maven:3.9.11-eclipse-temurin-25 AS builder
 
 WORKDIR /workspace
 
-# Copy Maven wrapper and pom.xml first for better layer caching
-COPY .mvn/ .mvn/
-COPY mvnw pom.xml ./
+# Copy pom.xml first for better layer caching
+COPY pom.xml ./
 
 # Download dependencies (cached unless pom.xml changes)
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copy source code and build the application
 COPY src/ ./src/
-RUN ./mvnw clean package -DskipTests -B
+RUN mvn clean package -DskipTests -B
 
 # Stage 2: Create the runtime image
 FROM eclipse-temurin:25-jre AS runtime
