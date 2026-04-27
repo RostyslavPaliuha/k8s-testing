@@ -121,6 +121,7 @@ kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml"
 
 ERRORS=0
 
@@ -166,6 +167,15 @@ if kubectl get statefulset postgres-postgresql -n authorization-server-ns -o jso
   echo "   ✅ postgres-postgresql ready"
 else
   echo "   ❌ postgres-postgresql not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Auth Test SPA:"
+if kubectl get deployment auth-test-spa-ui-deployment -n auth-test-spa-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ auth-test-spa-ui-deployment ready"
+else
+  echo "   ❌ auth-test-spa-ui-deployment not ready"
   ERRORS=$((ERRORS + 1))
 fi
 
