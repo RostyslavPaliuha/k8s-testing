@@ -6,4 +6,4 @@ metadata:
 data:
   SERVER_PORT: "8083"
   SPRING_PROFILES_ACTIVE: "k8s"
-  LOGGING_LEVEL_WEB: "trace"
+  LOGGING_LEVEL_ROOT: "trace"
