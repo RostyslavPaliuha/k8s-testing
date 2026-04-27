@@ -5,110 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Київстар ТБ - Каталог</title>
     <style>
-        body, html {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: auto;
-            display: block !important;
-            background: #101620;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
+        :root {
+            color-scheme: dark;
+            --page-bg: #101620;
+            --surface: rgba(22, 28, 38, 0.92);
+            --surface-strong: rgba(22, 28, 38, 0.98);
+            --surface-muted: #3c4a5e;
+            --accent: #007bff;
+            --accent-soft: rgba(0, 123, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #8c98a9;
+            --danger: #ff6b6b;
+            --danger-soft: rgba(255, 107, 107, 0.2);
+            --shadow: 0 8px 24px rgba(0, 123, 255, 0.3);
             font-family: Arial, sans-serif;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
-            position: relative;
+            min-height: 100%;
+            margin: 0;
+            background: var(--page-bg);
+            color: var(--text-primary);
+        }
+
+        body {
+            min-height: 100vh;
         }
 
         .catalog-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
-            background-color: rgba(22, 28, 38, 0.95);
-            border-bottom: 1px solid #3c4a5e;
-            position: sticky;
-            top: 0;
-            left: 0;
-            right: 0;
             width: 100%;
-            z-index: 100;
-            box-sizing: border-box;
+            padding: 15px 30px;
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--surface-muted);
         }
 
         .header-logo {
             display: flex;
             align-items: center;
-            gap: 15px;
         }
 
         .header-logo img {
+            display: block;
             height: 40px;
             width: auto;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
-        }
-
-        .user-profile:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .user-profile-name {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 500;
-            max-width: 180px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .user-profile-picture {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #007bff;
-            box-sizing: border-box;
-        }
-
-        .user-profile-initial {
-            background-color: #007bff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
         }
 
         .user-profile-wrapper {
             position: relative;
         }
 
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .user-profile:hover,
+        .user-profile[aria-expanded="true"] {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-profile-name {
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .user-profile-picture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--accent);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         .user-profile-dropdown {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             right: 0;
-            margin-top: 8px;
-            background-color: rgba(22, 28, 38, 0.98);
-            border: 1px solid #3c4a5e;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
             min-width: 150px;
             display: none;
-            z-index: 1000;
+            background-color: var(--surface-strong);
+            border: 1px solid var(--surface-muted);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         }
 
         .user-profile-dropdown.show {
@@ -116,29 +124,21 @@
         }
 
         .user-profile-dropdown button {
-            display: block;
             width: 100%;
             padding: 10px 16px;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 14px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-primary);
             text-align: left;
+            font-size: 14px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .user-profile-dropdown button:hover {
-            background-color: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-        }
-
-        .user-profile-dropdown button:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .user-profile-dropdown button:last-child {
-            border-radius: 0 0 8px 8px;
+            background-color: var(--danger-soft);
+            color: var(--danger);
         }
 
         .catalog-container {
@@ -148,10 +148,9 @@
         }
 
         .catalog-title {
+            margin: 0 0 25px;
             font-size: 28px;
             font-weight: 600;
-            color: #ffffff;
-            margin: 0 0 25px;
         }
 
         .catalog-grid {
@@ -161,24 +160,23 @@
         }
 
         .asset-card {
-            background-color: rgba(22, 28, 38, 0.8);
-            border-radius: 12px;
             overflow: hidden;
+            border-radius: 12px;
+            background-color: rgba(22, 28, 38, 0.8);
             transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
         }
 
         .asset-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.3);
+            box-shadow: var(--shadow);
         }
 
         .asset-poster {
-            width: 100%;
-            aspect-ratio: 2/3;
-            object-fit: cover;
             display: block;
-            background-color: #3c4a5e;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            background-color: var(--surface-muted);
         }
 
         .asset-info {
@@ -186,13 +184,12 @@
         }
 
         .asset-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ffffff;
             margin: 0 0 8px;
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .asset-meta {
@@ -200,47 +197,44 @@
             flex-wrap: wrap;
             gap: 8px;
             font-size: 12px;
-            color: #8c98a9;
+            color: var(--text-secondary);
         }
 
-        .asset-type, .asset-year {
-            background-color: rgba(0, 123, 255, 0.2);
-            color: #007bff;
+        .asset-badge {
             padding: 3px 8px;
             border-radius: 4px;
+            background-color: var(--accent-soft);
+            color: var(--accent);
         }
 
-        .loading-container,
-        .error-container,
-        .no-assets {
-            text-align: center;
+        .state {
             padding: 60px 20px;
+            text-align: center;
+        }
+
+        .state-message {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .state-message.error {
+            color: var(--danger);
         }
 
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid #3c4a5e;
-            border-top-color: #007bff;
+            margin: 0 auto 20px;
+            border: 4px solid var(--surface-muted);
+            border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-text,
-        .no-assets {
-            color: #8c98a9;
-            font-size: 16px;
-        }
-
-        .error-message {
-            color: #ff6b6b;
-            font-size: 16px;
-            margin-top: 10px;
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 560px) {
@@ -273,10 +267,10 @@
         <img src="https://tv.kyivstar.ua/assets/img/logo/logo-ua.svg" alt="Kyivstar TV Logo">
     </div>
     <div class="user-profile-wrapper">
-        <div class="user-profile" id="userProfileBtn">
+        <button type="button" class="user-profile" id="userProfileBtn" aria-expanded="false" aria-controls="userProfileDropdown">
             <span class="user-profile-name" id="userProfileName">Користувач</span>
-            <div class="user-profile-picture user-profile-initial" id="userProfileInitial">К</div>
-        </div>
+            <span class="user-profile-picture" id="userProfileAvatar">К</span>
+        </button>
         <div class="user-profile-dropdown" id="userProfileDropdown">
             <button type="button" id="logoutBtn">Вийти</button>
         </div>
@@ -285,30 +279,133 @@
 
 <main class="catalog-container">
     <h1 class="catalog-title">Каталог контенту</h1>
-    <section id="catalogContent" aria-live="polite">
-        <div class="loading-container">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Завантаження каталогу...</div>
-        </div>
-    </section>
+    <section id="catalogContent" aria-live="polite"></section>
 </main>
 
 <script>
-    const LOGIN_URL = 'https://local.ks.tv/authorization/login';
-    const USERINFO_URL = 'https://local.ks.tv/identity/api/v1/userinfo';
-    const CATALOG_URL = 'https://local.ks.tv/catalog/api/v1/assets';
-    const LOGOUT_URL = 'https://local.ks.tv/logout';
-    const FALLBACK_POSTER = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22300%22%3E%3Crect fill=%22%233c4a5e%22 width=%22200%22 height=%22300%22/%3E%3Ctext fill=%22%238c98a9%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ENo Image%3C/text%3E%3C/svg%3E';
+    const CONFIG = {
+        loginUrl: 'https://local.api.ks.tv/oauth2/authorization/gateway',
+        loginPageUrl: 'https://local.ks.tv/authorization/login',
+        userInfoUrl: 'https://local.api.ks.tv/identity/api/v1/userinfo',
+        catalogUrl: 'https://local.api.ks.tv/catalog/api/v1/assets',
+        logoutUrl: 'https://local.ks.tv/logout',
+        fallbackPoster: 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22300%22%3E%3Crect fill=%22%233c4a5e%22 width=%22200%22 height=%22300%22/%3E%3Ctext fill=%22%238c98a9%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ENo Image%3C/text%3E%3C/svg%3E'
+    };
 
-    function authFetch(url) {
+    let isLoggingOut = false;
+
+    const elements = {
+        catalogContent: document.getElementById('catalogContent'),
+        userProfileBtn: document.getElementById('userProfileBtn'),
+        userProfileDropdown: document.getElementById('userProfileDropdown'),
+        userProfileName: document.getElementById('userProfileName'),
+        userProfileAvatar: document.getElementById('userProfileAvatar'),
+        logoutBtn: document.getElementById('logoutBtn')
+    };
+
+    function authFetch(url, options) {
         return fetch(url, {
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include'
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            ...options
         });
     }
 
     function redirectToLogin(url) {
-        window.location.href = url || LOGIN_URL;
+        window.location.href = url || CONFIG.loginUrl;
+    }
+
+    function extractRedirectUrlFromText(text) {
+        if (!text) {
+            return '';
+        }
+
+        const patterns = [
+            /<meta[^>]+http-equiv=["']refresh["'][^>]+url=([^"'>\s]+)/i,
+            /window\.location(?:\.href)?\s*=\s*["']([^"']+)["']/i,
+            /window\.location\.(?:replace|assign)\(["']([^"']+)["']\)/i,
+            /location(?:\.href)?\s*=\s*["']([^"']+)["']/i
+        ];
+
+        for (const pattern of patterns) {
+            const match = text.match(pattern);
+
+            if (match && match[1]) {
+                return match[1];
+            }
+        }
+
+        return '';
+    }
+
+    function resolveRedirectUrl(candidate) {
+        if (!candidate) {
+            return '';
+        }
+
+        try {
+            return new URL(candidate, window.location.href).href;
+        } catch (_) {
+            return '';
+        }
+    }
+
+    async function getRedirectTarget(response) {
+        const headerCandidates = [
+            response.headers.get('Location'),
+            response.headers.get('X-Redirect-To'),
+            response.headers.get('X-Login-Url'),
+            response.headers.get('X-Auth-Redirect')
+        ];
+
+        for (const candidate of headerCandidates) {
+            const resolved = resolveRedirectUrl(candidate);
+
+            if (resolved) {
+                return resolved;
+            }
+        }
+
+        const contentType = response.headers.get('content-type') || '';
+
+        if (contentType.includes('application/json')) {
+            try {
+                const payload = await response.clone().json();
+                const jsonCandidates = [
+                    payload && payload.redirectUrl,
+                    payload && payload.redirect_url,
+                    payload && payload.redirectUri,
+                    payload && payload.redirect_uri,
+                    payload && payload.location,
+                    payload && payload.url,
+                    payload && payload.href,
+                    payload && payload.loginUrl
+                ];
+
+                for (const candidate of jsonCandidates) {
+                    const resolved = resolveRedirectUrl(candidate);
+
+                    if (resolved) {
+                        return resolved;
+                    }
+                }
+            } catch (_) {
+            }
+        }
+
+        if (contentType.includes('text/html')) {
+            try {
+                const html = await response.clone().text();
+                const resolved = resolveRedirectUrl(extractRedirectUrlFromText(html));
+
+                if (resolved) {
+                    return resolved;
+                }
+            } catch (_) {
+            }
+        }
+
+        return response.redirected ? resolveRedirectUrl(response.url) : '';
     }
 
     function normalizeUserPayload(userInfo) {
@@ -323,73 +420,65 @@
         };
     }
 
-    function userDisplayName(userInfo) {
+    function getUserDisplayName(userInfo) {
         const user = normalizeUserPayload(userInfo);
         return user.name || user.preferred_username || user.email || user.sub || 'Користувач';
     }
 
-    function userPicture(userInfo) {
-        const user = normalizeUserPayload(userInfo);
-        return user.picture || null;
+    function getUserPicture(userInfo) {
+        return normalizeUserPayload(userInfo).picture || '';
     }
 
-    function renderUserProfile(userInfo) {
-        const name = userDisplayName(userInfo);
-        const picture = userPicture(userInfo);
-        const nameElement = document.getElementById('userProfileName');
-        const existingPictureElement = document.getElementById('userProfileInitial') || document.querySelector('.user-profile-picture');
-
-        nameElement.textContent = name;
-        nameElement.title = name;
-
-        if (!picture) {
-            existingPictureElement.textContent = name.trim().charAt(0).toUpperCase() || 'К';
-            return;
-        }
-
-        const image = document.createElement('img');
-        image.className = 'user-profile-picture';
-        image.id = 'userProfileInitial';
-        image.src = picture;
-        image.alt = 'Profile';
-        image.onerror = function() {
-            const fallback = document.createElement('div');
-            fallback.className = 'user-profile-picture user-profile-initial';
-            fallback.id = 'userProfileInitial';
-            fallback.textContent = name.trim().charAt(0).toUpperCase() || 'К';
-            image.replaceWith(fallback);
-        };
-
-        existingPictureElement.replaceWith(image);
+    function getInitial(value) {
+        return (value || '').trim().charAt(0).toUpperCase() || 'К';
     }
 
-    async function loadUserProfile() {
-        const response = await authFetch(USERINFO_URL);
+    function createState(message, options) {
+        const settings = options || {};
+        const state = document.createElement('div');
+        const text = document.createElement('div');
 
-        if (response.redirected) {
-            redirectToLogin(response.url);
-            return;
+        state.className = 'state';
+        text.className = 'state-message' + (settings.isError ? ' error' : '');
+        text.textContent = message;
+
+        if (settings.isLoading) {
+            const spinner = document.createElement('div');
+            spinner.className = 'loading-spinner';
+            state.appendChild(spinner);
         }
 
-        if (response.status === 401) {
-            redirectToLogin();
-            return;
+        state.appendChild(text);
+        return state;
+    }
+
+    function renderState(message, options) {
+        elements.catalogContent.replaceChildren(createState(message, options));
+    }
+
+    function createBadge(text) {
+        const badge = document.createElement('span');
+        badge.className = 'asset-badge';
+        badge.textContent = text;
+        return badge;
+    }
+
+    function getReleaseYear(asset) {
+        if (!asset || !asset.releaseDate) {
+            return 'N/A';
         }
 
-        if (!response.ok) {
-            return;
-        }
-
-        renderUserProfile(await response.json());
+        const match = String(asset.releaseDate).match(/\d{4}/);
+        return match ? match[0] : String(asset.releaseDate);
     }
 
     function choosePosterUrl(asset) {
-        const imageSources = Array.isArray(asset.imagesSource) ? asset.imagesSource : [];
+        const imageSources = Array.isArray(asset && asset.imagesSource) ? asset.imagesSource : [];
         const candidates = [];
 
         imageSources.forEach(function(source) {
             const baseUrl = source && source.url;
-            const files = source && Array.isArray(source.imgFiles) ? source.imgFiles : [];
+            const files = Array.isArray(source && source.imgFiles) ? source.imgFiles : [];
 
             files.forEach(function(file) {
                 if (baseUrl && file && file.fileName) {
@@ -401,166 +490,222 @@
         return candidates.find(function(url) { return url.includes('IMAGE_2_3_XL'); })
             || candidates.find(function(url) { return url.includes('IMAGE_2_3_L'); })
             || candidates.find(function(url) { return url.includes('IMAGE_2_3_'); })
-            || FALLBACK_POSTER;
+            || CONFIG.fallbackPoster;
     }
 
-    function renderLoading() {
-        document.getElementById('catalogContent').innerHTML =
-            '<div class="loading-container">' +
-            '<div class="loading-spinner"></div>' +
-            '<div class="loading-text">Завантаження каталогу...</div>' +
-            '</div>';
-    }
+    function createAssetCard(asset) {
+        const card = document.createElement('article');
+        const poster = document.createElement('img');
+        const info = document.createElement('div');
+        const title = document.createElement('h3');
+        const meta = document.createElement('div');
+        const assetName = asset && asset.name ? asset.name : 'Asset Name';
 
-    function renderError(message) {
-        const content = document.getElementById('catalogContent');
-        content.innerHTML = '';
+        card.className = 'asset-card';
+        card.dataset.assetId = asset && asset.assetId ? asset.assetId : '';
 
-        const container = document.createElement('div');
-        container.className = 'error-container';
+        poster.className = 'asset-poster';
+        poster.src = choosePosterUrl(asset);
+        poster.alt = assetName;
+        poster.onerror = function() {
+            poster.onerror = null;
+            poster.src = CONFIG.fallbackPoster;
+        };
 
-        const error = document.createElement('div');
-        error.className = 'error-message';
-        error.textContent = message;
+        info.className = 'asset-info';
 
-        container.appendChild(error);
-        content.appendChild(container);
-    }
+        title.className = 'asset-name';
+        title.textContent = assetName;
+        title.title = assetName;
 
-    function renderNoAssets() {
-        const content = document.getElementById('catalogContent');
-        content.innerHTML = '';
+        meta.className = 'asset-meta';
+        meta.append(
+            createBadge(asset && asset.assetType ? asset.assetType : 'Відео'),
+            createBadge(getReleaseYear(asset))
+        );
 
-        const empty = document.createElement('div');
-        empty.className = 'no-assets';
-        empty.textContent = 'Каталог порожній';
-        content.appendChild(empty);
+        info.append(title, meta);
+        card.append(poster, info);
+
+        return card;
     }
 
     function renderCatalog(catalog) {
-        const assets = catalog && Array.isArray(catalog.assets) ? catalog.assets : [];
-        const content = document.getElementById('catalogContent');
-        content.innerHTML = '';
+        const assets = Array.isArray(catalog && catalog.assets) ? catalog.assets : [];
 
         if (!assets.length) {
-            renderNoAssets();
+            renderState('Каталог порожній');
             return;
         }
 
         const grid = document.createElement('div');
         grid.className = 'catalog-grid';
+        grid.append(...assets.map(createAssetCard));
+        elements.catalogContent.replaceChildren(grid);
+    }
 
-        assets.forEach(function(asset) {
-            const card = document.createElement('article');
-            card.className = 'asset-card';
-            card.dataset.assetId = asset.assetId || '';
+    function closeUserProfileDropdown() {
+        elements.userProfileDropdown.classList.remove('show');
+        elements.userProfileBtn.setAttribute('aria-expanded', 'false');
+    }
 
-            const poster = document.createElement('img');
-            poster.className = 'asset-poster';
-            poster.src = choosePosterUrl(asset);
-            poster.alt = asset.name || 'Asset poster';
-            poster.onerror = function() {
-                poster.onerror = null;
-                poster.src = FALLBACK_POSTER;
-            };
+    function openUserProfileDropdown() {
+        elements.userProfileDropdown.classList.add('show');
+        elements.userProfileBtn.setAttribute('aria-expanded', 'true');
+    }
 
-            const info = document.createElement('div');
-            info.className = 'asset-info';
+    function toggleUserProfileDropdown() {
+        if (elements.userProfileDropdown.classList.contains('show')) {
+            closeUserProfileDropdown();
+            return;
+        }
 
-            const title = document.createElement('h3');
-            title.className = 'asset-name';
-            title.textContent = asset.name || 'Asset Name';
-            title.title = asset.name || 'Asset Name';
+        openUserProfileDropdown();
+    }
 
-            const meta = document.createElement('div');
-            meta.className = 'asset-meta';
+    function renderUserProfile(userInfo) {
+        const name = getUserDisplayName(userInfo);
+        const picture = getUserPicture(userInfo);
 
-            const type = document.createElement('span');
-            type.className = 'asset-type';
-            type.textContent = asset.assetType || 'Відео';
+        elements.userProfileName.textContent = name;
+        elements.userProfileName.title = name;
 
-            const year = document.createElement('span');
-            year.className = 'asset-year';
-            year.textContent = asset.releaseDate || 'N/A';
+        if (!picture) {
+            elements.userProfileAvatar.textContent = getInitial(name);
+            elements.userProfileAvatar.style.backgroundImage = '';
+            elements.userProfileAvatar.style.backgroundSize = '';
+            elements.userProfileAvatar.style.backgroundPosition = '';
+            return;
+        }
 
-            meta.appendChild(type);
-            meta.appendChild(year);
-            info.appendChild(title);
-            info.appendChild(meta);
-            card.appendChild(poster);
-            card.appendChild(info);
-            grid.appendChild(card);
-        });
+        elements.userProfileAvatar.textContent = '';
+        elements.userProfileAvatar.style.backgroundImage = 'url("' + picture.replace(/"/g, '\\"') + '")';
+        elements.userProfileAvatar.style.backgroundSize = 'cover';
+        elements.userProfileAvatar.style.backgroundPosition = 'center';
 
-        content.appendChild(grid);
+        const image = new Image();
+        image.onerror = function() {
+            elements.userProfileAvatar.style.backgroundImage = '';
+            elements.userProfileAvatar.style.backgroundSize = '';
+            elements.userProfileAvatar.style.backgroundPosition = '';
+            elements.userProfileAvatar.textContent = getInitial(name);
+        };
+        image.src = picture;
+    }
+
+    async function fetchProtectedJson(url) {
+        const response = await authFetch(url);
+        const contentType = response.headers.get('content-type') || '';
+
+        if (response.redirected) {
+            redirectToLogin(await getRedirectTarget(response));
+            return null;
+        }
+
+        if (response.status === 401) {
+            redirectToLogin(await getRedirectTarget(response));
+            return null;
+        }
+
+        if (!response.ok) {
+            throw new Error(String(response.status));
+        }
+
+        if (!contentType.includes('application/json')) {
+            redirectToLogin(await getRedirectTarget(response));
+            return null;
+        }
+
+        return response.json();
+    }
+
+    async function loadAuthenticatedUserProfile() {
+        const userInfo = await fetchProtectedJson(CONFIG.userInfoUrl);
+
+        if (!userInfo) {
+            return null;
+        }
+
+        renderUserProfile(userInfo);
+        return userInfo;
     }
 
     async function loadCatalog() {
-        renderLoading();
+        renderState('Завантаження каталогу...', { isLoading: true });
 
         try {
-            const response = await authFetch(CATALOG_URL);
+            const catalog = await fetchProtectedJson(CONFIG.catalogUrl);
 
-            if (response.redirected) {
-                redirectToLogin(response.url);
-                return;
+            if (catalog) {
+                renderCatalog(catalog);
             }
-
-            if (response.status === 401) {
-                redirectToLogin();
-                return;
-            }
-
-            if (!response.ok) {
-                renderError('Error: catalog request failed with status ' + response.status);
-                return;
-            }
-
-            renderCatalog(await response.json());
         } catch (error) {
-            renderError('Error: ' + error.message);
+            renderState('Error: catalog request failed with status ' + error.message, { isError: true });
+        }
+    }
+
+    function clearClientSession() {
+        localStorage.clear();
+        sessionStorage.clear();
+    }
+
+    async function logout() {
+        if (isLoggingOut) {
+            return;
+        }
+
+        isLoggingOut = true;
+        closeUserProfileDropdown();
+        elements.logoutBtn.disabled = true;
+        elements.logoutBtn.textContent = 'Вихід...';
+
+        try {
+            await fetch(CONFIG.logoutUrl, {
+                method: 'POST',
+                credentials: 'include',
+                redirect: 'manual',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        } catch (_) {
+        } finally {
+            clearClientSession();
+            window.location.href = CONFIG.loginPageUrl;
         }
     }
 
     function setupUserProfileDropdown() {
-        const userProfileBtn = document.getElementById('userProfileBtn');
-        const userProfileDropdown = document.getElementById('userProfileDropdown');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        userProfileBtn.addEventListener('click', function(event) {
+        elements.userProfileBtn.addEventListener('click', function(event) {
             event.stopPropagation();
-            userProfileDropdown.classList.toggle('show');
+            toggleUserProfileDropdown();
         });
+
+
 
         document.addEventListener('click', function(event) {
-            if (!userProfileDropdown.contains(event.target) && !userProfileBtn.contains(event.target)) {
-                userProfileDropdown.classList.remove('show');
+            if (!elements.userProfileBtn.contains(event.target) && !elements.userProfileDropdown.contains(event.target)) {
+                closeUserProfileDropdown();
             }
         });
 
-        userProfileDropdown.addEventListener('click', function(event) {
-            if (event.target !== logoutBtn) {
-                userProfileDropdown.classList.remove('show');
-            }
-        });
-
-        logoutBtn.addEventListener('click', function() {
-            fetch(LOGOUT_URL, {
-                method: 'POST',
-                credentials: 'include'
-            }).finally(function() {
-                localStorage.clear();
-                sessionStorage.clear();
-                window.location.href = LOGIN_URL + '?logout';
-            });
-        });
+        elements.logoutBtn.addEventListener('click', logout);
     }
 
-    window.addEventListener('load', function() {
+    async function init() {
         setupUserProfileDropdown();
-        loadUserProfile().catch(function() {});
-        loadCatalog();
-    });
+        renderState('Завантаження каталогу...', { isLoading: true });
+
+        try {
+            const userInfo = await loadAuthenticatedUserProfile();
+
+            if (userInfo) {
+                await loadCatalog();
+            }
+        } catch (error) {
+            renderState('Error: user info request failed with status ' + error.message, { isError: true });
+        }
+    }
+
+    window.addEventListener('load', init);
 </script>
 </body>
 </html>
