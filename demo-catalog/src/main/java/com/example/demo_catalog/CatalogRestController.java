@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @RestController
 @RequestMapping("/api/v1/")
 public class CatalogRestController {
@@ -20,6 +22,7 @@ public class CatalogRestController {
 
   @GetMapping("/assets")
   public CatalogResponse catalog() {
+    makeARandomDelay();
     CatalogResponse response = new CatalogResponse();
     response.setName("Саме час подивитись");
     response.setType("REGULAR");
@@ -38,6 +41,16 @@ public class CatalogRestController {
     response.setPinValidated(false);
     response.setAssets(assetDataLoader.loadAssets());
     return response;
+  }
+
+  private void makeARandomDelay() {
+    ThreadLocalRandom random = ThreadLocalRandom.current();
+    int randomDelay = random.ints(100, 500).findFirst().orElseGet(() -> 100);
+    try {
+      Thread.sleep(randomDelay);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
   }
 
 }
