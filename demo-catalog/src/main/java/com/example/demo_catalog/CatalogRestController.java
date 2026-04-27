@@ -22,7 +22,6 @@ public class CatalogRestController {
 
   @GetMapping("/assets")
   public CatalogResponse catalog() {
-    makeARandomDelay();
     CatalogResponse response = new CatalogResponse();
     response.setName("Саме час подивитись");
     response.setType("REGULAR");
