@@ -12,7 +12,16 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: demo-catalog-ns
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      name: demo-catalog-deployment
+      namespace: demo-catalog-ns
+      jsonPointers:
+        - /spec/replicas
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - RespectIgnoreDifferences=true
