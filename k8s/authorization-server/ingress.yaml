@@ -12,8 +12,22 @@ spec:
     - hosts:
         - auth.local.ks.tv
       secretName: auth.local.ks.tv
+    - hosts:
+        - local.ks.tv
+      secretName: local.ks.tv
+
   rules:
     - host: auth.local.ks.tv
+      http:
+        paths:
+          - path: /authorization
+            pathType: Prefix
+            backend:
+              service:
+                name: authorization-server
+                port:
+                  name: http
+    - host: local.ks.tv
       http:
         paths:
           - path: /authorization
