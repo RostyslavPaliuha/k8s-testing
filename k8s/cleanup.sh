@@ -47,6 +47,13 @@ kubectl delete clusterrole ingress-nginx-admission --ignore-not-found
 kubectl delete clusterrolebinding ingress-nginx-admission --ignore-not-found
 
 echo ""
+echo "🗑️  Cleaning up Telepresence/Ambassador resources..."
+kubectl delete mutatingwebhookconfiguration agent-injector-webhook-ambassador --ignore-not-found
+kubectl delete clusterrole traffic-manager-ambassador --ignore-not-found
+kubectl delete clusterrolebinding traffic-manager-ambassador --ignore-not-found
+delete_namespace ambassador
+
+echo ""
 echo "🗑️  Cleaning up ArgoCD cluster-scoped resources..."
 kubectl delete -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --ignore-not-found
 
