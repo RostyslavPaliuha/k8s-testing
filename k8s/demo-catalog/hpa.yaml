@@ -29,8 +29,8 @@ spec:
           periodSeconds: 1
       selectPolicy: Max
     scaleDown:
-      stabilizationWindowSeconds: 15 # Dropped from 30s to 15s for faster reset
+      stabilizationWindowSeconds: 10
       policies:
-        - type: Percent
-          value: 30           # Allow killing all extra pods at once when load stops
+        - type: Pods
+          value: 1
           periodSeconds: 10
