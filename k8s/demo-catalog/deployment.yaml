@@ -50,7 +50,7 @@ spec:
               cpu: "200m"
             limits:
               memory: "512Mi"
-              cpu: "500m"
+              cpu: "400m"
           livenessProbe:
             tcpSocket:
               port: 8083

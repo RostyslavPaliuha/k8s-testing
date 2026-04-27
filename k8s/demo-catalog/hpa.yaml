@@ -17,3 +17,20 @@ spec:
         target:
           type: Utilization
           averageUtilization: 50
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 5
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 1
+        - type: Percent
+          value: 200
+          periodSeconds: 1
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 15 # Dropped from 30s to 15s for faster reset
+      policies:
+        - type: Percent
+          value: 30           # Allow killing all extra pods at once when load stops
+          periodSeconds: 10
