@@ -6,7 +6,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://auth.local.ks.tv/authorization
+          issuer-uri: https://local.ks.tv/authorization
           jwk-set-uri: http://authorization-server.authorization-server-ns.svc.cluster.local/authorization/oauth2/jwks
 server:
   port: 8083

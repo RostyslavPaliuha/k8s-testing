@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ui
-          image: auth-test-spa-ui:v4
+          image: auth-test-spa-ui:v6
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

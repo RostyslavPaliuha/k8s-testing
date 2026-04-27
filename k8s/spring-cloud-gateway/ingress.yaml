@@ -13,13 +13,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - local.ks.tv
-      secretName: local.ks.tv
-    - hosts:
-        - clients.dev.vidmind.com
-      secretName: clients.dev.vidmind.com
+        - local.api.ks.tv
+      secretName: local.api.ks.tv
   rules:
-    - host: local.ks.tv
+    - host: local.api.ks.tv
       http:
         paths:
           - path: /
@@ -29,13 +26,4 @@ spec:
                 name: ingress-gateway
                 port:
                   name: http
-    - host: clients.dev.vidmind.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ingress-gateway
-                port:
-                  name: http
+
