@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: redis
-    repoURL: https://charts.bitnami.com/bitnami
+    repoURL: registry-1.docker.io/bitnamicharts
     targetRevision: 18.x.x
     helm:
       values: |
