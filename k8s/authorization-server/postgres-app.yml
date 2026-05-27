@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     chart: postgresql
-    repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 15.x.x
+    repoURL: registry-1.docker.io/bitnamicharts
+    targetRevision: 18.6.7
     helm:
       values: |
         auth:

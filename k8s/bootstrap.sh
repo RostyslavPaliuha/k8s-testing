@@ -117,6 +117,7 @@ wait_for_ingress_nginx
 kubectl apply -f "$SCRIPT_DIR/cluster-components/local.ks.tv.cert-secret.yml"
 
 echo "Apply argocd application definitions"
+kubectl apply -f "$SCRIPT_DIR/argocd/bitnami-oci-repository-secret.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml"
