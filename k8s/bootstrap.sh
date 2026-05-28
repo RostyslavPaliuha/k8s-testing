@@ -178,7 +178,7 @@ echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "🧩 Waiting for Application Stack"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-if ! wait_for_resource_rollout statefulset/postgres-postgresql authorization-server-ns 600s; then
+if ! wait_for_resource_rollout statefulset/postgres-db-postgresql authorization-server-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
 if ! wait_for_resource_rollout deployment/authorization-server-deployment authorization-server-ns 600s; then
@@ -277,10 +277,10 @@ fi
 
 echo ""
 echo "   Authorization Server Database:"
-if kubectl get statefulset postgres-postgresql -n authorization-server-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
-  echo "   ✅ postgres-postgresql ready"
+if kubectl get statefulset postgres-db-postgresql -n authorization-server-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ postgres-db-postgresql ready"
 else
-  echo "   ❌ postgres-postgresql not ready"
+  echo "   ❌ postgres-db-postgresql not ready"
   ERRORS=$((ERRORS + 1))
 fi
 
