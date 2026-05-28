@@ -31,6 +31,25 @@ wait_for_ingress_nginx() {
   return 1
 }
 
+wait_for_resource_rollout() {
+  local resource="$1"
+  local namespace="$2"
+  local timeout="${3:-600s}"
+  local attempts="${4:-60}"
+
+  echo "   Waiting for ${resource} to be created in namespace ${namespace}..."
+  for ((i=1; i<=attempts; i++)); do
+    if kubectl get "${resource}" -n "${namespace}" &>/dev/null; then
+      wait_for_rollout "${resource}" "${namespace}" "${timeout}"
+      return 0
+    fi
+    sleep 10
+  done
+
+  echo "❌ ${resource} was not created in namespace ${namespace} in time"
+  return 1
+}
+
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "🚀 Kubernetes Cluster Bootstrap"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -47,7 +66,7 @@ echo "✅ Cluster reachable"
 # ── 1. Metrics Server ────────────────────────────────────────────
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "📊 Step 1/4: Installing Metrics Server"
+echo "📊 Step 1/5: Installing Metrics Server"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 if kubectl get deployment metrics-server -n kube-system &>/dev/null; then
@@ -79,7 +98,7 @@ fi
 # ── 2. ArgoCD ────────────────────────────────────────────────────
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "🅰️  Step 2/4: Installing ArgoCD"
+echo "🅰️  Step 2/5: Installing ArgoCD"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 if kubectl get deployment argocd-server -n argocd &>/dev/null; then
@@ -111,13 +130,22 @@ else
   echo "   🔑 Admin password: $PASSWORD"
 fi
 
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🌐 Step 3/5: Applying Cluster Components"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Apply the cluster components"
 kubectl apply -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml"
 wait_for_ingress_nginx
 kubectl apply -f "$SCRIPT_DIR/cluster-components/local.ks.tv.cert-secret.yml"
 
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "📦 Step 4/5: Applying ArgoCD Applications"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Apply argocd application definitions"
 kubectl apply -f "$SCRIPT_DIR/argocd/bitnami-oci-repository-secret.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-observability.yaml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml"
@@ -125,6 +153,49 @@ kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml"
 
 ERRORS=0
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔭 Step 5/5: Waiting for Observability Stack"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+if ! wait_for_resource_rollout deployment/kube-prometheus-stack-grafana monitoring 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout statefulset/prometheus-kube-prometheus-stack-prometheus monitoring 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/tempo monitoring 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout statefulset/loki monitoring 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/opentelemetry-collector monitoring 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🧩 Waiting for Application Stack"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+if ! wait_for_resource_rollout statefulset/postgres-postgresql authorization-server-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/authorization-server-deployment authorization-server-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/ingress-gateway-deployment ingress-gateway-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/service-deployment service-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/demo-catalog-deployment demo-catalog-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/auth-test-spa-ui-deployment auth-test-spa-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
 
 echo ""
 echo "   Metrics Server:"
@@ -154,6 +225,39 @@ else
 fi
 
 echo ""
+echo "   Observability:"
+if kubectl get application observability-root -n argocd &>/dev/null; then
+  echo "   ✅ observability-root applied"
+else
+  echo "   ❌ observability-root missing"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get deployment opentelemetry-collector -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ opentelemetry-collector ready"
+else
+  echo "   ❌ opentelemetry-collector not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get statefulset prometheus-kube-prometheus-stack-prometheus -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ prometheus ready"
+else
+  echo "   ❌ prometheus not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get deployment tempo -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ tempo ready"
+else
+  echo "   ❌ tempo not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get statefulset loki -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ loki ready"
+else
+  echo "   ❌ loki not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
 echo "   Resource Service:"
 if kubectl get deployment service-deployment -n service-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ service-deployment ready"
@@ -163,11 +267,38 @@ else
 fi
 
 echo ""
+echo "   Authorization Server:"
+if kubectl get deployment authorization-server-deployment -n authorization-server-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ authorization-server-deployment ready"
+else
+  echo "   ❌ authorization-server-deployment not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
 echo "   Authorization Server Database:"
 if kubectl get statefulset postgres-postgresql -n authorization-server-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ postgres-postgresql ready"
 else
   echo "   ❌ postgres-postgresql not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Ingress Gateway:"
+if kubectl get deployment ingress-gateway-deployment -n ingress-gateway-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "2"; then
+  echo "   ✅ ingress-gateway-deployment ready"
+else
+  echo "   ❌ ingress-gateway-deployment not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Demo Catalog:"
+if kubectl get deployment demo-catalog-deployment -n demo-catalog-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ demo-catalog-deployment ready"
+else
+  echo "   ❌ demo-catalog-deployment not ready"
   ERRORS=$((ERRORS + 1))
 fi
 
@@ -205,6 +336,7 @@ echo "   API:       curl https://local.ks.tv/resource-server/api/v1/data"
 echo "   ArgoCD UI: http://localhost:8082  (see install_argo.sh for port-forward)"
 echo "   Debug:     ./k8s/debug/enable.sh"
 echo "              ./k8s/debug/port-forward.sh all"
+echo "   Grafana:   ./k8s/debug/port-forward.sh observability"
 echo ""
 echo "📊 Monitoring:"
 echo "   kubectl get pods -n service-ns"
