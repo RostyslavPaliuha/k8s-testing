@@ -1,0 +1,122 @@
+fullnameOverride: kube-prometheus-stack
+
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: true
+  adminPassword: admin
+  defaultDashboardsTimezone: browser
+  grafana.ini:
+    auth.anonymous:
+      enabled: true
+      org_role: Admin
+    auth:
+      disable_login_form: false
+    feature_toggles:
+      enable: traceqlEditor traceToProfiles
+    log:
+      level: warn
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      labelValue: "1"
+      searchNamespace: monitoring
+      folder: /tmp/dashboards/Spring Boot
+      provider:
+        foldersFromFilesStructure: false
+    datasources:
+      enabled: true
+      defaultDatasourceEnabled: false
+  additionalDataSources:
+    - name: Prometheus
+      type: prometheus
+      uid: prometheus
+      url: http://kube-prometheus-stack-prometheus:9090
+      access: proxy
+      isDefault: true
+      editable: false
+      jsonData:
+        timeInterval: 15s
+        exemplarTraceIdDestinations:
+          - name: traceID
+            datasourceUid: tempo
+    - name: Loki
+      type: loki
+      uid: loki
+      url: http://loki-gateway.monitoring.svc.cluster.local
+      access: proxy
+      editable: false
+      jsonData:
+        derivedFields:
+          - name: TraceID
+            matcherRegex: 'trace_id["\s:]+(\w+)'
+            url: '$${__value.raw}'
+            datasourceUid: tempo
+            urlDisplayLabel: View Trace in Tempo
+          - name: SpanID
+            matcherRegex: '"span_id":"(\\w+)"'
+            url: '$${__value.raw}'
+            datasourceUid: tempo
+            urlDisplayLabel: View Span in Tempo
+    - name: Tempo
+      type: tempo
+      uid: tempo
+      url: http://tempo.monitoring.svc.cluster.local:3200
+      access: proxy
+      editable: false
+      jsonData:
+        tracesToLogsV2:
+          datasourceUid: loki
+          filterByTraceID: true
+          filterBySpanID: true
+          customQuery: false
+          spanStartTimeShift: -1h
+          spanEndTimeShift: 1h
+          tags:
+            - key: service.name
+              value: service
+        serviceMap:
+          datasourceUid: prometheus
+        nodeGraph:
+          enabled: true
+        search:
+          hide: false
+          maxResults: 20
+
+prometheus:
+  prometheusSpec:
+    retention: 7d
+    scrapeInterval: 15s
+    evaluationInterval: 15s
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorNamespaceSelector: {}
+    podMonitorNamespaceSelector: {}
+    externalLabels:
+      environment: local
+    enableRemoteWriteReceiver: true
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+
+prometheusOperator:
+  admissionWebhooks:
+    patch:
+      enabled: true
+
+kubeEtcd:
+  enabled: false
+
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false

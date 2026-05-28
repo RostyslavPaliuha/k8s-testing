@@ -1,0 +1,27 @@
+tempo:
+  retention: 1h
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+  metricsGenerator:
+    enabled: true
+    remoteWriteUrl: http://kube-prometheus-stack-prometheus:9090/api/v1/write
+  overrides:
+    defaults:
+      metrics_generator:
+        processors:
+          - service-graphs
+          - span-metrics
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+serviceMonitor:
+  enabled: true
+  labels:
+    release: kube-prometheus-stack
