@@ -25,6 +25,6 @@ spec:
         releaseName: tempo
         valueFiles:
           - $values/grapha-k8s/values/tempo.yaml
-    - repoURL: REPLACE_WITH_GIT_REPO_URL
-      targetRevision: REPLACE_WITH_GIT_BRANCH
+    - repoURL: https://github.com/RostyslavPaliuha/k8s-testing
+      targetRevision: master
       ref: values

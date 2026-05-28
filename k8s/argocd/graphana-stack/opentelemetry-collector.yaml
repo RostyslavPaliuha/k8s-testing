@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: alloy
+  name: opentelemetry-collector
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   destination:
@@ -18,13 +18,13 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
   sources:
-    - repoURL: https://grafana.github.io/helm-charts
-      chart: alloy
+    - repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+      chart: opentelemetry-collector
       targetRevision: "*"
       helm:
-        releaseName: alloy
+        releaseName: opentelemetry-collector
         valueFiles:
-          - $values/grapha-k8s/values/alloy.yaml
-    - repoURL: REPLACE_WITH_GIT_REPO_URL
-      targetRevision: REPLACE_WITH_GIT_BRANCH
+          - $values/grapha-k8s/values/opentelemetry-collector.yaml
+    - repoURL: https://github.com/RostyslavPaliuha/k8s-testing
+      targetRevision: master
       ref: values

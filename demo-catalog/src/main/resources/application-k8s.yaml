@@ -22,3 +22,16 @@ management:
   endpoint:
     health:
       show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
+
+management.otlp.metrics.export.url: http://opentelemetry-collector.monitoring.svc.cluster.local:4318/v1/metrics
+management.otlp.metrics.export.enabled: true
+management.otlp.metrics.export.step: 15s
+management.otlp.metrics.export.resource-attributes.service.name: catalog
+management.otlp.metrics.export.resource-attributes.service.namespace: demo-catalog
+management.tracing.export.otlp.enabled: true
+management.opentelemetry.tracing.export.otlp.endpoint: http://opentelemetry-collector.monitoring.svc.cluster.local:4318/v1/traces
+management.opentelemetry.resource-attributes.service.name: catalog
+management.opentelemetry.resource-attributes.service.namespace: demo-catalog

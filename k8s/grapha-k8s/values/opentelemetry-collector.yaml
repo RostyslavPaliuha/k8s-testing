@@ -1,0 +1,111 @@
+mode: deployment
+
+image:
+  repository: otel/opentelemetry-collector-contrib
+
+command:
+  name: otelcol-contrib
+
+replicaCount: 1
+
+presets:
+  logsCollection:
+    enabled: false
+  hostMetrics:
+    enabled: false
+  kubernetesAttributes:
+    enabled: false
+  kubeletMetrics:
+    enabled: false
+
+ports:
+  otlp:
+    enabled: true
+    containerPort: 4317
+    servicePort: 4317
+    protocol: TCP
+  otlp-http:
+    enabled: true
+    containerPort: 4318
+    servicePort: 4318
+    protocol: TCP
+  metrics:
+    enabled: true
+    containerPort: 8888
+    servicePort: 8888
+    protocol: TCP
+  jaeger-compact:
+    enabled: false
+  jaeger-grpc:
+    enabled: false
+  jaeger-thrift:
+    enabled: false
+  zipkin:
+    enabled: false
+
+config:
+  receivers:
+    jaeger: null
+    otlp:
+      protocols:
+        grpc:
+          endpoint: ${env:MY_POD_IP}:4317
+        http:
+          endpoint: ${env:MY_POD_IP}:4318
+    prometheus: null
+    zipkin: null
+
+  processors:
+    memory_limiter:
+      check_interval: 1s
+      limit_percentage: 75
+      spike_limit_percentage: 15
+    batch:
+      timeout: 5s
+      send_batch_size: 1024
+
+  exporters:
+    prometheusremotewrite:
+      endpoint: http://kube-prometheus-stack-prometheus:9090/api/v1/write
+      resource_to_telemetry_conversion:
+        enabled: true
+    otlp/tempo:
+      endpoint: tempo.monitoring.svc.cluster.local:4317
+      tls:
+        insecure: true
+    debug: null
+
+  service:
+    pipelines:
+      logs: null
+      metrics:
+        receivers:
+          - otlp
+        processors:
+          - memory_limiter
+          - batch
+        exporters:
+          - prometheusremotewrite
+      traces:
+        receivers:
+          - otlp
+        processors:
+          - memory_limiter
+          - batch
+        exporters:
+          - otlp/tempo
+
+serviceMonitor:
+  enabled: true
+  metricsEndpoints:
+    - port: metrics
+  extraLabels:
+    release: kube-prometheus-stack
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 512Mi
