@@ -24,7 +24,7 @@ spec:
       helm:
         releaseName: kube-prometheus-stack
         valueFiles:
-          - $values/grapha-k8s/values/kube-prometheus-stack.yaml
+          - $values/k8s/grapha-k8s/values/kube-prometheus-stack.yaml
     - repoURL: https://github.com/RostyslavPaliuha/k8s-testing
       targetRevision: master
       ref: values

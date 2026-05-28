@@ -112,6 +112,10 @@ prometheusOperator:
     patch:
       enabled: true
 
+prometheus-node-exporter:
+  hostRootFsMount:
+    mountPropagation: ""
+
 kubeEtcd:
   enabled: false
 

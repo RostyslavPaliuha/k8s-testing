@@ -24,7 +24,7 @@ spec:
       helm:
         releaseName: tempo
         valueFiles:
-          - $values/grapha-k8s/values/tempo.yaml
+          - $values/k8s/grapha-k8s/values/tempo.yaml
     - repoURL: https://github.com/RostyslavPaliuha/k8s-testing
       targetRevision: master
       ref: values

@@ -164,10 +164,10 @@ fi
 if ! wait_for_resource_rollout statefulset/prometheus-kube-prometheus-stack-prometheus monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
-if ! wait_for_resource_rollout deployment/tempo monitoring 600s; then
+if ! wait_for_resource_rollout statefulset/tempo monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
-if ! wait_for_resource_rollout statefulset/loki monitoring 600s; then
+if ! wait_for_resource_rollout deployment/loki-gateway monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
 if ! wait_for_resource_rollout deployment/opentelemetry-collector monitoring 600s; then
@@ -244,13 +244,13 @@ else
   echo "   ❌ prometheus not ready"
   ERRORS=$((ERRORS + 1))
 fi
-if kubectl get deployment tempo -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+if kubectl get statefulset tempo -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ tempo ready"
 else
   echo "   ❌ tempo not ready"
   ERRORS=$((ERRORS + 1))
 fi
-if kubectl get statefulset loki -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+if kubectl get deployment loki-gateway -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ loki ready"
 else
   echo "   ❌ loki not ready"
