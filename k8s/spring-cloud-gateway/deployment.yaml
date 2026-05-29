@@ -12,12 +12,15 @@ spec:
       app: ingress-gateway
   template:
     metadata:
+      annotations:
+        resource.opentelemetry.io/service.name: gateway
+        resource.opentelemetry.io/service.namespace: ingress-gateway
       labels:
         app: ingress-gateway
     spec:
       containers:
         - name: ingress-gateway
-          image: gateway:v17
+          image: gateway:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
