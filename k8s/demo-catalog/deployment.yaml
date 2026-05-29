@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: demo-catalog
-          image: catalog:v9
+          image: catalog:v10
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8083
