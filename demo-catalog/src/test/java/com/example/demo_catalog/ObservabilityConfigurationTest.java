@@ -37,16 +37,12 @@ class ObservabilityConfigurationTest {
   }
 
   @Test
-  void logbackPushesCatalogLogsToLokiWithTraceCorrelation() throws IOException {
-    String logback = readResource("/logback-spring.xml");
+  void k8sDeploymentAnnotatesCatalogLogsForOpenTelemetryCollector() throws IOException {
+    String deployment = readFile("k8s/demo-catalog/deployment.yaml");
 
-    assertThat(logback)
-        .contains("com.github.loki4j.logback.Loki4jAppender")
-        .contains("http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push")
-        .contains("app = catalog")
-        .contains("namespace = demo-catalog-ns")
-        .contains("trace_id = %X{traceId:-}")
-        .contains("span_id = %X{spanId:-}");
+    assertThat(deployment)
+        .contains("resource.opentelemetry.io/service.name: catalog")
+        .contains("resource.opentelemetry.io/service.namespace: demo-catalog");
   }
 
   private String readResource(String resourcePath) throws IOException {
@@ -54,5 +50,9 @@ class ObservabilityConfigurationTest {
       assertThat(inputStream).as(resourcePath).isNotNull();
       return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
     }
+  }
+
+  private String readFile(String path) throws IOException {
+    return java.nio.file.Files.readString(java.nio.file.Path.of("..", path), StandardCharsets.UTF_8);
   }
 }

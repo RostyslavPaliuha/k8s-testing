@@ -12,6 +12,9 @@ spec:
       app: demo-catalog
   template:
     metadata:
+      annotations:
+        resource.opentelemetry.io/service.name: catalog
+        resource.opentelemetry.io/service.namespace: demo-catalog
       labels:
         app: demo-catalog
     spec:
