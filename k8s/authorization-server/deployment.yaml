@@ -12,12 +12,15 @@ spec:
       app: authorization-server
   template:
     metadata:
+      annotations:
+        resource.opentelemetry.io/service.name: authorization-server
+        resource.opentelemetry.io/service.namespace: authorization-server
       labels:
         app: authorization-server
     spec:
       containers:
         - name: authorization-server
-          image: authorization-server:v13
+          image: authorization-server:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
