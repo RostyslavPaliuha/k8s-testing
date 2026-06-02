@@ -5,30 +5,13 @@ metadata:
   namespace: authorization-server-ns
 data:
   SPRING_PROFILES_ACTIVE: "k8s"
-#  SPRING_APPLICATION_JSON: >-
-#    {
-#      "spring": {
-#        "security": {
-#          "oauth2": {
-#            "authorizationserver": {
-#              "client": {
-#                "oidc-client": {
-#                  "registration": {
-#                    "redirect-uris": ["https://local.ks.tv/login/oauth2/code/oidc-client"],
-#                    "post-logout-redirect-uris": ["https://local.ks.tv/"]
-#                  }
-#                },
-#                "gateway": {
-#                  "registration": {
-#                    "redirect-uris": ["https://local.ks.tv/login/oauth2/code/gateway"],
-#                    "post-logout-redirect-uris": ["https://local.ks.tv/"]
-#                  }
-#                }
-#              }
-#            }
-#          }
-#        }
-#      }
-#    }
-#  SPRING_LIQUIBASE_CHANGE_LOG: "classpath:/db.changelog/master.xml"
+  OTEL_SERVICE_NAME: gateway
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://opentelemetry-collector.monitoring.svc.cluster.local:4318
+  OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+  OTEL_TRACES_EXPORTER: otlp
+  OTEL_METRICS_EXPORTER: otlp
+  OTEL_LOGS_EXPORTER: otlp
+  OTEL_INSTRUMENTATION_MICROMETER_ENABLED: "true"
+  OTEL_INSTRUMENTATION_LOGBACK_MDC_ENABLED: "true"
+  OTEL_INSTRUMENTATION_LOGBACK_APPENDER_ENABLED: "true"
 
