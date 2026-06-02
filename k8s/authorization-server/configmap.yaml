@@ -5,7 +5,7 @@ metadata:
   namespace: authorization-server-ns
 data:
   SPRING_PROFILES_ACTIVE: "k8s"
-  OTEL_SERVICE_NAME: gateway
+  OTEL_SERVICE_NAME: authorization-server
   OTEL_EXPORTER_OTLP_ENDPOINT: http://opentelemetry-collector.monitoring.svc.cluster.local:4318
   OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
   OTEL_TRACES_EXPORTER: otlp
