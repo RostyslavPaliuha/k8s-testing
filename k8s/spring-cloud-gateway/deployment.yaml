@@ -44,6 +44,26 @@ spec:
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.host=0.0.0.0
                 -Djava.rmi.server.hostname=127.0.0.1
+            - name: OTEL_SERVICE_NAME
+              value: gateway
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.namespace=ingress-gateway,k8s.namespace.name=ingress-gateway-ns
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://opentelemetry-collector.monitoring.svc.cluster.local:4318
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: http/protobuf
+            - name: OTEL_TRACES_EXPORTER
+              value: otlp
+            - name: OTEL_METRICS_EXPORTER
+              value: otlp
+            - name: OTEL_LOGS_EXPORTER
+              value: otlp
+            - name: OTEL_INSTRUMENTATION_MICROMETER_ENABLED
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_LOGBACK_MDC_ENABLED
+              value: "true"
+            - name: OTEL_INSTRUMENTATION_LOGBACK_APPENDER_ENABLED
+              value: "true"
           envFrom:
             - configMapRef:
                 name: ingress-gateway-config

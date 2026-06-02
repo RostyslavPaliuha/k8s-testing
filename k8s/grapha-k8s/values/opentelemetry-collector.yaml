@@ -11,7 +11,7 @@ replicaCount: 1
 
 presets:
   logsCollection:
-    enabled: true
+    enabled: false
     includeCollectorLogs: false
   hostMetrics:
     enabled: false
