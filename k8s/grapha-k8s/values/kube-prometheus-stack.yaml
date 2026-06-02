@@ -6,6 +6,7 @@ alertmanager:
 grafana:
   enabled: true
   adminPassword: admin
+  defaultDashboardsEnabled: false
   defaultDashboardsTimezone: browser
   grafana.ini:
     auth.anonymous:
@@ -23,9 +24,11 @@ grafana:
       label: grafana_dashboard
       labelValue: "1"
       searchNamespace: monitoring
-      folder: /tmp/dashboards/Spring Boot
+      folder: /tmp/dashboards
+      folderAnnotation: grafana_folder
       provider:
-        foldersFromFilesStructure: false
+        allowUiUpdates: false
+        foldersFromFilesStructure: true
     datasources:
       enabled: true
       defaultDatasourceEnabled: false
