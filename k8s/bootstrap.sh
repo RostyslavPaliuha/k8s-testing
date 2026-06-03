@@ -145,6 +145,12 @@ kubectl apply -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml"
 wait_for_ingress_nginx
 kubectl apply -f "$SCRIPT_DIR/cluster-components/local.ks.tv.cert-secret.yml"
 
+echo "   Configuring ArgoCD ingress access..."
+kubectl apply -f "$SCRIPT_DIR/argocd/argocd.local.ks.tv.cert-secret.yml"
+kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/argocd/ingress.yaml"
+kubectl rollout restart deployment/argocd-server -n argocd
+wait_for_rollout deployment/argocd-server argocd 300s
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "📦 Step 4/5: Applying ArgoCD Applications"
@@ -357,7 +363,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo ""
 echo "🌐 Access your service:"
 echo "   API:       curl https://local.ks.tv/resource-server/api/v1/data"
-echo "   ArgoCD UI: http://localhost:8082  (see install_argo.sh for port-forward)"
+echo "   ArgoCD UI: https://argocd.local.ks.tv"
 echo "   Debug:     ./k8s/debug/enable.sh"
 echo "              ./k8s/debug/port-forward.sh all"
 echo "   Grafana:   ./k8s/debug/port-forward.sh observability"

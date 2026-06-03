@@ -29,6 +29,8 @@ kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml" --ignor
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/ingress.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/argocd.local.ks.tv.cert-secret.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml" --ignore-not-found
 
 echo ""
