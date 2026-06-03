@@ -145,10 +145,12 @@ echo "📦 Step 4/5: Applying ArgoCD Applications"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "Apply argocd application definitions"
 kubectl apply -f "$SCRIPT_DIR/argocd/bitnami-oci-repository-secret.yml"
-kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-observability.yaml"
+kubectl apply -f "$SCRIPT_DIR/argocd/grafana-applications/prometheus.yaml"
+kubectl apply -f "$SCRIPT_DIR/argocd/grafana-applications/loki.yaml"
+kubectl apply -f "$SCRIPT_DIR/argocd/grafana-applications/opentelemetry-collector.yaml"
+kubectl apply -f "$SCRIPT_DIR/argocd/grafana-applications/tempo.yaml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
-kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml"
 
@@ -158,9 +160,7 @@ echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "🔭 Step 5/5: Waiting for Observability Stack"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-if ! wait_for_resource_rollout deployment/kube-prometheus-stack-grafana monitoring 600s; then
-  ERRORS=$((ERRORS + 1))
-fi
+
 if ! wait_for_resource_rollout statefulset/prometheus-kube-prometheus-stack-prometheus monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
@@ -238,12 +238,7 @@ else
   echo "   ❌ opentelemetry-collector not ready"
   ERRORS=$((ERRORS + 1))
 fi
-if kubectl get statefulset prometheus-kube-prometheus-stack-prometheus -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
-  echo "   ✅ prometheus ready"
-else
-  echo "   ❌ prometheus not ready"
-  ERRORS=$((ERRORS + 1))
-fi
+
 if kubectl get statefulset tempo -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
   echo "   ✅ tempo ready"
 else

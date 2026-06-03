@@ -21,15 +21,13 @@ echo "🧹 Cleaning up Kubernetes resources..."
 
 echo ""
 echo "🗑️  Cleaning up ArgoCD resources..."
-kubectl delete -f "$SCRIPT_DIR/argocd/graphana-stack/opentelemetry-collector.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/argocd/graphana-stack/tempo.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/argocd/graphana-stack/loki.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/argocd/graphana-stack/kube-prometheus-stack.yaml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-observability.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/opentelemetry-collector.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/tempo.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/loki.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/prometheus.yaml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml" --ignore-not-found
-kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-resource-server.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml" --ignore-not-found
 

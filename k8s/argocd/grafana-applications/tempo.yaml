@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: tempo
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   destination:
@@ -18,13 +18,13 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
   sources:
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: tempo
       targetRevision: "*"
       helm:
-        releaseName: kube-prometheus-stack
+        releaseName: tempo
         valueFiles:
-          - $values/k8s/grapha-k8s/values/kube-prometheus-stack.yaml
+          - $values/k8s/grafana-components/values/tempo.yaml
     - repoURL: https://github.com/RostyslavPaliuha/k8s-testing
       targetRevision: master
       ref: values
