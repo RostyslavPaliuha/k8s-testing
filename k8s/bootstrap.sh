@@ -110,6 +110,9 @@ else
   echo "   Installing ArgoCD manifests..."
   kubectl apply --server-side --force-conflicts -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
+  echo "   Configuring default ArgoCD users..."
+  kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/argocd/default-users.yaml"
+
   if ! kubectl get deployment argocd-server -n argocd &>/dev/null; then
     echo "❌ ArgoCD server deployment not found - installation may have failed"
     exit 1
@@ -129,6 +132,9 @@ else
   echo "✅ ArgoCD installed"
   echo "   🔑 Admin password: $PASSWORD"
 fi
+
+echo "   Ensuring default ArgoCD users are configured..."
+kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/argocd/default-users.yaml"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
