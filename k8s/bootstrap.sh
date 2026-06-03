@@ -170,6 +170,17 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 if ! wait_for_resource_rollout statefulset/prometheus-kube-prometheus-stack-prometheus monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
+if ! wait_for_resource_rollout deployment/kube-prometheus-stack-grafana monitoring 600s; then
+  ERRORS=$((ERRORS + 1))
+else
+  echo "   Bootstrapping Grafana UI users..."
+  kubectl delete job grafana-bootstrap-users -n monitoring --ignore-not-found
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/bootstrap-users.yaml"
+  if ! kubectl wait --for=condition=complete job/grafana-bootstrap-users -n monitoring --timeout=300s; then
+    echo "❌ Grafana user bootstrap did not complete"
+    ERRORS=$((ERRORS + 1))
+  fi
+fi
 if ! wait_for_resource_rollout statefulset/tempo monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
@@ -242,6 +253,18 @@ if kubectl get deployment opentelemetry-collector -n monitoring -o jsonpath='{.s
   echo "   ✅ opentelemetry-collector ready"
 else
   echo "   ❌ opentelemetry-collector not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get deployment kube-prometheus-stack-grafana -n monitoring -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ grafana ready"
+else
+  echo "   ❌ grafana not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get job grafana-bootstrap-users -n monitoring -o jsonpath='{.status.succeeded}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ grafana users bootstrapped"
+else
+  echo "   ❌ grafana users not bootstrapped"
   ERRORS=$((ERRORS + 1))
 fi
 

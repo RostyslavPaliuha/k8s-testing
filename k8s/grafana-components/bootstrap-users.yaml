@@ -1,0 +1,127 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-bootstrap-users
+  namespace: monitoring
+type: Opaque
+stringData:
+  admin-password: admin
+  rpaliuha-password: "1234"
+  mdemydovych-password: "1234"
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: grafana-bootstrap-users
+  namespace: monitoring
+spec:
+  backoffLimit: 6
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: bootstrap-users
+          image: curlimages/curl:8.8.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GRAFANA_URL
+              value: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local
+            - name: GRAFANA_ADMIN_USER
+              value: admin
+            - name: GRAFANA_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-bootstrap-users
+                  key: admin-password
+            - name: RPALIUHA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-bootstrap-users
+                  key: rpaliuha-password
+            - name: MDEMYDOVYCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-bootstrap-users
+                  key: mdemydovych-password
+          command:
+            - /bin/sh
+            - -ec
+            - |
+              wait_for_grafana() {
+                for attempt in $(seq 1 60); do
+                  if curl -fsS "${GRAFANA_URL}/api/health" >/dev/null; then
+                    return 0
+                  fi
+                  echo "Waiting for Grafana API (${attempt}/60)..."
+                  sleep 5
+                done
+                echo "Grafana API did not become ready in time"
+                return 1
+              }
+
+              json_id() {
+                sed -n 's/.*"id":[[:space:]]*\([0-9][0-9]*\).*/\1/p'
+              }
+
+              request_status() {
+                method="$1"
+                path="$2"
+                body="$3"
+                curl -sS -o /tmp/grafana-response.json -w '%{http_code}' \
+                  -u "${GRAFANA_ADMIN_USER}:${GRAFANA_ADMIN_PASSWORD}" \
+                  -H 'Content-Type: application/json' \
+                  -X "${method}" "${GRAFANA_URL}${path}" \
+                  -d "${body}"
+              }
+
+              ensure_admin_user() {
+                login="$1"
+                password="$2"
+                email="${login}@local.ks.tv"
+                name="$login"
+
+                echo "Ensuring Grafana admin user: ${login}"
+                lookup="$(curl -fsS -u "${GRAFANA_ADMIN_USER}:${GRAFANA_ADMIN_PASSWORD}" \
+                  "${GRAFANA_URL}/api/users/lookup?loginOrEmail=${login}" || true)"
+                user_id="$(printf '%s' "${lookup}" | json_id)"
+
+                if [ -z "${user_id}" ]; then
+                  create_response="$(curl -fsS -u "${GRAFANA_ADMIN_USER}:${GRAFANA_ADMIN_PASSWORD}" \
+                    -H 'Content-Type: application/json' \
+                    -X POST "${GRAFANA_URL}/api/admin/users" \
+                    -d "{\"name\":\"${name}\",\"email\":\"${email}\",\"login\":\"${login}\",\"password\":\"${password}\"}")"
+                  user_id="$(printf '%s' "${create_response}" | json_id)"
+                else
+                  curl -fsS -u "${GRAFANA_ADMIN_USER}:${GRAFANA_ADMIN_PASSWORD}" \
+                    -H 'Content-Type: application/json' \
+                    -X PUT "${GRAFANA_URL}/api/admin/users/${user_id}/password" \
+                    -d "{\"password\":\"${password}\"}" >/dev/null
+                fi
+
+                if [ -z "${user_id}" ]; then
+                  echo "Could not resolve Grafana user id for ${login}"
+                  return 1
+                fi
+
+                status="$(request_status POST /api/org/users "{\"loginOrEmail\":\"${login}\",\"role\":\"Admin\"}")"
+                case "${status}" in
+                  200|201|409|412)
+                    ;;
+                  *)
+                    echo "Could not add ${login} to Grafana org: HTTP ${status}"
+                    cat /tmp/grafana-response.json
+                    return 1
+                    ;;
+                esac
+
+                status="$(request_status PATCH "/api/org/users/${user_id}" '{"role":"Admin"}')"
+                if [ "${status}" != "200" ]; then
+                  echo "Could not set Grafana org role for ${login}: HTTP ${status}"
+                  cat /tmp/grafana-response.json
+                  return 1
+                fi
+              }
+
+              wait_for_grafana
+              ensure_admin_user rpaliuha "${RPALIUHA_PASSWORD}"
+              ensure_admin_user mdemydovych "${MDEMYDOVYCH_PASSWORD}"
