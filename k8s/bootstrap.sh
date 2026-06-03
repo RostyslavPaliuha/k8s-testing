@@ -31,6 +31,35 @@ wait_for_ingress_nginx() {
   return 1
 }
 
+wait_for_ingress_admission_webhook() {
+  local validation_manifest="$1"
+  local attempts=60
+
+  echo "   Waiting for ingress-nginx admission webhook TLS..."
+  for ((i=1; i<=attempts; i++)); do
+    local webhook_ca=""
+    local secret_ca=""
+
+    webhook_ca="$(kubectl get validatingwebhookconfiguration ingress-nginx-admission \
+      -o jsonpath='{.webhooks[0].clientConfig.caBundle}' 2>/dev/null || true)"
+    secret_ca="$(kubectl get secret ingress-nginx-admission -n ingress-nginx \
+      -o jsonpath='{.data.ca}' 2>/dev/null || true)"
+
+    if [[ -n "$webhook_ca" && -n "$secret_ca" && "$webhook_ca" == "$secret_ca" ]] &&
+      kubectl apply --server-side --dry-run=server -f "$validation_manifest" &>/dev/null; then
+      echo "✅ ingress-nginx admission webhook is trusted and accepting ingresses"
+      return 0
+    fi
+
+    sleep 5
+  done
+
+  echo "❌ ingress-nginx admission webhook was not ready in time"
+  kubectl get validatingwebhookconfiguration ingress-nginx-admission -o yaml 2>/dev/null || true
+  kubectl get secret ingress-nginx-admission -n ingress-nginx -o yaml 2>/dev/null || true
+  return 1
+}
+
 wait_for_resource_rollout() {
   local resource="$1"
   local namespace="$2"
@@ -147,6 +176,7 @@ kubectl apply -f "$SCRIPT_DIR/cluster-components/local.ks.tv.cert-secret.yml"
 
 echo "   Configuring ArgoCD ingress access..."
 kubectl apply -f "$SCRIPT_DIR/argocd/argocd.local.ks.tv.cert-secret.yml"
+wait_for_ingress_admission_webhook "$SCRIPT_DIR/argocd/ingress.yaml"
 kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/argocd/ingress.yaml"
 kubectl rollout restart deployment/argocd-server -n argocd
 wait_for_rollout deployment/argocd-server argocd 300s
