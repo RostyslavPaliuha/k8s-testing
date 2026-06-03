@@ -209,6 +209,11 @@ fi
 if ! wait_for_resource_rollout deployment/kube-prometheus-stack-grafana monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 else
+  echo "   Configuring Grafana ingress access..."
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/grafana.local.ks.tv.cert-secret.yml"
+  wait_for_ingress_admission_webhook "$SCRIPT_DIR/grafana-components/ingress.yaml"
+  kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/grafana-components/ingress.yaml"
+
   echo "   Bootstrapping Grafana UI users..."
   kubectl delete job grafana-bootstrap-users -n monitoring --ignore-not-found
   kubectl apply -f "$SCRIPT_DIR/grafana-components/bootstrap-users.yaml"
@@ -223,7 +228,7 @@ fi
 if ! wait_for_resource_rollout deployment/loki-gateway monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
-if ! wait_for_resource_rollout deployment/opentelemetry-collector monitoring 600s; then
+if ! wait_for_resource_rollout deployment/open-telemetry-collector monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
 
@@ -394,9 +399,9 @@ echo ""
 echo "🌐 Access your service:"
 echo "   API:       curl https://local.ks.tv/resource-server/api/v1/data"
 echo "   ArgoCD UI: https://argocd.local.ks.tv"
+echo "   Grafana:   https://grafana.local.ks.tv"
 echo "   Debug:     ./k8s/debug/enable.sh"
 echo "              ./k8s/debug/port-forward.sh all"
-echo "   Grafana:   ./k8s/debug/port-forward.sh observability"
 echo ""
 echo "📊 Monitoring:"
 echo "   kubectl get pods -n service-ns"

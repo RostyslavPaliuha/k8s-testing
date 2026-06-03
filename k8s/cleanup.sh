@@ -21,6 +21,8 @@ echo "🧹 Cleaning up Kubernetes resources..."
 
 echo ""
 echo "🗑️  Cleaning up ArgoCD resources..."
+kubectl delete -f "$SCRIPT_DIR/grafana-components/ingress.yaml" --ignore-not-found
+kubectl delete -f "$SCRIPT_DIR/grafana-components/grafana.local.ks.tv.cert-secret.yml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/opentelemetry-collector.yaml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/tempo.yaml" --ignore-not-found
 kubectl delete -f "$SCRIPT_DIR/argocd/grafana-applications/loki.yaml" --ignore-not-found
