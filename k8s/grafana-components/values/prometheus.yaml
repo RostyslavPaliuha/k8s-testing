@@ -6,6 +6,9 @@ alertmanager:
 grafana:
   enabled: true
   adminPassword: admin
+  persistence:
+    enabled: true
+    size: 1Gi
   defaultDashboardsEnabled: false
   defaultDashboardsTimezone: browser
   grafana.ini:
