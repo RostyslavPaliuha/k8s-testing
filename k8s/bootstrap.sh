@@ -214,6 +214,9 @@ else
   wait_for_ingress_admission_webhook "$SCRIPT_DIR/grafana-components/ingress.yaml"
   kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/grafana-components/ingress.yaml"
 
+  echo "   Applying Grafana spring boot apps dashboards..."
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/spring-boot-applications-dashboards.yaml"
+
   echo "   Applying Grafana storage dashboards..."
   kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/postgres-dashboards.yaml"
   kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/redis-dashboards.yaml"
