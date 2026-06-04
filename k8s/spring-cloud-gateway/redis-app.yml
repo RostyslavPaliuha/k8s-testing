@@ -24,7 +24,7 @@ spec:
         metrics:
           enabled: true
           image:
-            registry: docker.io
+            registry: registry-1.docker.io
             repository: bitnami/redis-exporter
             tag: latest
           serviceMonitor:
