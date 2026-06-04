@@ -25,7 +25,7 @@ spec:
           enabled: true
           image:
             registry: docker.io
-            repository: oliver006/redis_exporter
+            repository: bitnami/redis-exporter
             tag: latest
           serviceMonitor:
             enabled: true
