@@ -215,7 +215,9 @@ else
   kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/grafana-components/ingress.yaml"
 
   echo "   Applying Grafana spring boot apps dashboards..."
-  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/spring-boot-applications-dashboards.yaml"
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/authorization-server-dashboards.yaml"
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/catalog-server-dashboards.yaml"
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/gateway-server-dashboards.yaml"
 
   echo "   Applying Grafana storage dashboards..."
   kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/postgres-dashboards.yaml"
@@ -233,9 +235,6 @@ if ! wait_for_resource_rollout statefulset/tempo monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
 if ! wait_for_resource_rollout deployment/loki-gateway monitoring 600s; then
-  ERRORS=$((ERRORS + 1))
-fi
-if ! wait_for_resource_rollout deployment/open-telemetry-collector monitoring 600s; then
   ERRORS=$((ERRORS + 1))
 fi
 
