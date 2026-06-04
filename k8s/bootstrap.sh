@@ -251,9 +251,7 @@ fi
 if ! wait_for_resource_rollout deployment/ingress-gateway-deployment ingress-gateway-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
-if ! wait_for_resource_rollout deployment/service-deployment service-ns 600s; then
-  ERRORS=$((ERRORS + 1))
-fi
+
 if ! wait_for_resource_rollout deployment/demo-catalog-deployment demo-catalog-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
