@@ -2182,7 +2182,7 @@ data:
                           },
                           "spec": {
                             "editorMode": "code",
-                            "expr": "max(process_start_time_seconds{service_name=\"catalog\",k8s_pod_name=~\"$pod\"})",
+                            "expr": "max(process_start_time_seconds{service_name=\"catalog\",k8s_pod_name=~\"$pod\"})*1000",
                             "range": true
                           }
                         },
