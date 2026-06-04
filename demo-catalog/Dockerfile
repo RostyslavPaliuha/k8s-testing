@@ -26,14 +26,14 @@ FROM eclipse-temurin:25-jre AS runtime
 
 # Set environment variables for Kubernetes
 ENV SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-default}
-ENV JAVA_OPTS="-javaagent:/app/opentelemetry-javaagent.jar -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0"
+ENV JAVA_OPTS="-javaagent:/app/opentelemetry-javaagent.jar -Dotel.experimental.metrics.view-config=/app/histogram-view.yaml -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0"
 
 WORKDIR /app
 
 # Copy the built JAR from the builder stage
 COPY --from=builder /workspace/target/*.jar app.jar
 COPY --from=builder /workspace/otel-agent/opentelemetry-javaagent.jar opentelemetry-javaagent.jar
-
+COPY histogram-view.yaml /app/histogram-view.yaml
 # Expose the default Spring Boot port
 EXPOSE 8080
 
