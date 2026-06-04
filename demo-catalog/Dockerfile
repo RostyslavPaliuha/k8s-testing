@@ -33,7 +33,7 @@ WORKDIR /app
 # Copy the built JAR from the builder stage
 COPY --from=builder /workspace/target/*.jar app.jar
 COPY --from=builder /workspace/otel-agent/opentelemetry-javaagent.jar opentelemetry-javaagent.jar
-COPY histogram-view.yaml /app/histogram-view.yaml
+COPY histogram-view.yaml histogram-view.yaml
 # Expose the default Spring Boot port
 EXPOSE 8080
 
