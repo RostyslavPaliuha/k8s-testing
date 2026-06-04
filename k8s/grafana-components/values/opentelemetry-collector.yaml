@@ -62,7 +62,6 @@ config:
       check_interval: 1s
       limit_percentage: 75
       spike_limit_percentage: 15
-    cumulativetodelta: {}
     batch:
       timeout: 5s
       send_batch_size: 1024
@@ -96,7 +95,6 @@ config:
           - otlp
         processors:
           - memory_limiter
-          - cumulativetodelta
           - batch
         exporters:
           - prometheusremotewrite
