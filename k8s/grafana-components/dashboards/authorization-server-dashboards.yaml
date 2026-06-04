@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: spring-boot-system-dashboards
+  name: spring-boot-system-authorization
   namespace: monitoring
   labels:
     grafana_dashboard: "1"
