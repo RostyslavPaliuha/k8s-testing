@@ -81,7 +81,7 @@ grafana:
           spanEndTimeShift: 1h
           tags:
             - key: service.name
-              value: service
+              value: service_name
         serviceMap:
           datasourceUid: prometheus
         nodeGraph:
