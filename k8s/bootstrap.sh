@@ -216,8 +216,8 @@ else
 
   echo "   Applying Grafana spring boot apps dashboards..."
   kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/authorization-server-dashboards.yaml"
-  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/catalog-server-dashboards.yaml"
-  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/gateway-server-dashboards.yaml"
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/catalog-dashboards.yaml"
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/gateway-dashboards.yaml"
 
   echo "   Applying Grafana storage dashboards..."
   kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/postgres-dashboards.yaml"
