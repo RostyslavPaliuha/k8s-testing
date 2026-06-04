@@ -21,6 +21,16 @@ spec:
           persistence:
             enabled: true
             size: 5Gi
+        metrics:
+          enabled: true
+          image:
+            registry: docker.io
+            repository: oliver006/redis_exporter
+            tag: latest
+          serviceMonitor:
+            enabled: true
+            labels:
+              release: kube-prometheus-stack
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-gateway-ns
