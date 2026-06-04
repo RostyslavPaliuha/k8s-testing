@@ -214,6 +214,10 @@ else
   wait_for_ingress_admission_webhook "$SCRIPT_DIR/grafana-components/ingress.yaml"
   kubectl apply --server-side --force-conflicts -f "$SCRIPT_DIR/grafana-components/ingress.yaml"
 
+  echo "   Applying Grafana storage dashboards..."
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/postgres-dashboards.yaml"
+  kubectl apply -f "$SCRIPT_DIR/grafana-components/dashboards/redis-dashboards.yaml"
+
   echo "   Bootstrapping Grafana UI users..."
   kubectl delete job grafana-bootstrap-users -n monitoring --ignore-not-found
   kubectl apply -f "$SCRIPT_DIR/grafana-components/bootstrap-users.yaml"
@@ -306,6 +310,18 @@ if kubectl get job grafana-bootstrap-users -n monitoring -o jsonpath='{.status.s
   echo "   ✅ grafana users bootstrapped"
 else
   echo "   ❌ grafana users not bootstrapped"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get configmap postgres-dashboards -n monitoring &>/dev/null; then
+  echo "   ✅ postgres dashboard applied"
+else
+  echo "   ❌ postgres dashboard missing"
+  ERRORS=$((ERRORS + 1))
+fi
+if kubectl get configmap redis-dashboards -n monitoring &>/dev/null; then
+  echo "   ✅ redis dashboard applied"
+else
+  echo "   ❌ redis dashboard missing"
   ERRORS=$((ERRORS + 1))
 fi
 
