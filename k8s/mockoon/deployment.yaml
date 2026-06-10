@@ -23,7 +23,7 @@ spec:
             - "-d"
             - "/data/auth-server-oauth2.json"
             - "-p"
-            - "3000"
+            - "3002"
             - "--hostname"
             - "0.0.0.0"
           ports:
