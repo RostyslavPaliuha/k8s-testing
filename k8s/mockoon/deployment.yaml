@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: Always
           args:
             - "-d"
-            - "/data/mockoon-data.json"
+            - "/data/auth-server-oauth2.json"
             - "-p"
             - "3000"
             - "--hostname"
@@ -55,8 +55,8 @@ spec:
             allowPrivilegeEscalation: false
           volumeMounts:
             - name: mockoon-config
-              mountPath: /data/mockoon-data.json
-              subPath: mockoon-data.json
+              mountPath: /data/auth-server-oauth2.json
+              subPath: auth-server-oauth2.json
               readOnly: true
       volumes:
         - name: mockoon-config
