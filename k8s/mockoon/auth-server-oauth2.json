@@ -1,0 +1,78 @@
+{
+  "uuid": "685a3ff2-ee72-4644-8e45-1860d079fe6d",
+  "lastMigration": 27,
+  "name": "Auth server oauth2",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "cd893fca-37a9-4752-96fa-60d49d7fb268",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "oauth2/token",
+      "responses": [
+        {
+          "uuid": "be2abac7-9cd2-4ada-a0eb-2df7012abd43",
+          "body": "{\n  \"access_token\": \"mock-access-token\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 300000,\n  \"scope\": \"api.read api.write\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "cd893fca-37a9-4752-96fa-60d49d7fb268"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
