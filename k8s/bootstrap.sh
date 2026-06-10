@@ -195,6 +195,7 @@ kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-authorization-server.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-mockoon.yml"
 
 ERRORS=0
 
@@ -256,6 +257,9 @@ if ! wait_for_resource_rollout deployment/demo-catalog-deployment demo-catalog-n
   ERRORS=$((ERRORS + 1))
 fi
 if ! wait_for_resource_rollout deployment/auth-test-spa-ui-deployment auth-test-spa-ns 600s; then
+  ERRORS=$((ERRORS + 1))
+fi
+if ! wait_for_resource_rollout deployment/mockoon-deployment mockoon-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
 
@@ -389,6 +393,15 @@ if kubectl get deployment auth-test-spa-ui-deployment -n auth-test-spa-ns -o jso
   echo "   ✅ auth-test-spa-ui-deployment ready"
 else
   echo "   ❌ auth-test-spa-ui-deployment not ready"
+  ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "   Mockoon:"
+if kubectl get deployment mockoon-deployment -n mockoon-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ mockoon-deployment ready"
+else
+  echo "   ❌ mockoon-deployment not ready"
   ERRORS=$((ERRORS + 1))
 fi
 

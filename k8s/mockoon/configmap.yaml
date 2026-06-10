@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mockoon-config
+  namespace: mockoon-ns
+data:
+  mockoon-data.json: |
+    {
+      "uuid": "6c35f2a1-25c3-4e44-9e82-0f7cb06f6a20",
+      "lastMigration": 29,
+      "name": "Cluster Mock API",
+      "endpointPrefix": "",
+      "latency": 0,
+      "port": 3000,
+      "routes": [
+        {
+          "uuid": "a7995b61-4452-491d-a195-b8195d4552f1",
+          "documentation": "Placeholder health endpoint",
+          "method": "get",
+          "endpoint": "health",
+          "responses": [
+            {
+              "uuid": "d50ac29f-df04-4f70-8b49-13ecfd911a94",
+              "body": "{\n  \"status\": \"ok\",\n  \"service\": \"mockoon\"\n}",
+              "latency": 0,
+              "statusCode": 200,
+              "label": "OK",
+              "headers": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "filePath": "",
+              "sendFileAsBody": false,
+              "rules": [],
+              "rulesOperator": "OR",
+              "disableTemplating": false,
+              "fallbackTo404": false,
+              "default": true,
+              "databucketID": "",
+              "bodyType": "INLINE",
+              "crudKey": "id"
+            }
+          ],
+          "enabled": true,
+          "responseMode": null,
+          "type": "http"
+        }
+      ],
+      "proxyMode": false,
+      "proxyHost": "",
+      "cors": true,
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "proxyReqHeaders": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ],
+      "proxyResHeaders": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ],
+      "proxyRemovePrefix": false,
+      "hostname": "0.0.0.0",
+      "tlsOptions": {
+        "enabled": false,
+        "type": "CERT",
+        "pfxPath": "",
+        "certPath": "",
+        "keyPath": "",
+        "caPath": "",
+        "passphrase": ""
+      },
+      "data": [],
+      "folders": [],
+      "rootChildren": [
+        {
+          "type": "route",
+          "uuid": "a7995b61-4452-491d-a195-b8195d4552f1"
+        }
+      ]
+    }

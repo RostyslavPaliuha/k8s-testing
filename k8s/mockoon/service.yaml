@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mockoon
+  namespace: mockoon-ns
+  labels:
+    app: mockoon
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3000
+      name: http
+  selector:
+    app: mockoon
