@@ -1,4 +1,12 @@
 spring:
+  cloud:
+    consul:
+      host: discovery-server.discovery-server-ns.svc.cluster.local
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        instance-id: ${POD_NAME}
+        deregister: true
   application:
     name: catalog
 

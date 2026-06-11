@@ -64,6 +64,10 @@ spec:
               value: "true"
             - name: OTEL_INSTRUMENTATION_LOGBACK_APPENDER_ENABLED
               value: "true"
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
           envFrom:
             - configMapRef:
                 name: ingress-gateway-config

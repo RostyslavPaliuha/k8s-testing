@@ -19,7 +19,9 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) {
-    http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
+    http.authorizeHttpRequests((authorize) ->
+            authorize.requestMatchers("/actuator/health").permitAll()
+                     .anyRequest().authenticated())
         .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
     return http.build();
   }
