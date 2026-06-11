@@ -196,6 +196,7 @@ kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-ingress-gateway.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-mockoon.yml"
+kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-discovery-server.yml"
 
 ERRORS=0
 
