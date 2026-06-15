@@ -7,6 +7,15 @@ spring:
         prefer-ip-address: true
         instance-id: ${POD_NAME}
         deregister: true
+        heartbeat:
+          enabled: true
+          reregister-service-on-failure: true
+        enabled: true
+        register: true
+        fail-fast: false
+      service-registry:
+          auto-registration:
+           enabled: true
   application:
     name: catalog
 
