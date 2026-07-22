@@ -25,11 +25,6 @@ server:
 
   extraEnvironmentVars:
     VAULT_CACERT: /vault/userconfig/vault-tls/ca.crt
-    # The chart defaults VAULT_API_ADDR to https://$(POD_IP):8200, and a pod IP
-    # can never be in the cert. Clients redirected to the active node would hit
-    # an x509 error. Re-declared here (this block renders after the chart's own
-    # env vars, so it wins) using the per-pod DNS name the cert does cover.
-    VAULT_API_ADDR: https://$(HOSTNAME).vault-internal.vault-ns.svc.cluster.local:8200
 
   statefulSet:
     annotations:
@@ -83,6 +78,12 @@ server:
   ha:
     enabled: true
     replicas: 3
+    # The chart's default is https://$(POD_IP):8200, and a pod IP can never
+    # appear in the certificate, so clients redirected to the active node would
+    # hit an x509 error. Uses VAULT_K8S_POD_NAME rather than HOSTNAME because
+    # only the former is declared before VAULT_API_ADDR in the container's env
+    # list, which is what Kubernetes requires for $(VAR) expansion.
+    apiAddr: "https://$(VAULT_K8S_POD_NAME).vault-internal.vault-ns.svc.cluster.local:8200"
     raft:
       enabled: true
       setNodeId: true
