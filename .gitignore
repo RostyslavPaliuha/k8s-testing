@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Vault ###
+# Recovery keys and root token produced by k8s/vault/init.sh
+.vault-init.json

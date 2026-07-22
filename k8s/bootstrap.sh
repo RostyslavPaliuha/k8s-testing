@@ -287,18 +287,23 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 if ! wait_for_resource_rollout statefulset/postgres-db-postgresql authorization-server-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
-# Vault's readiness probe is `vault status`, so the pod stays NotReady until it
-# is initialised. Init must therefore happen before waiting on the rollout,
-# otherwise that wait always burns its full timeout.
-if ! "$SCRIPT_DIR/vault/init.sh"; then
-  echo "❌ Vault initialisation failed"
-  ERRORS=$((ERRORS + 1))
-elif ! wait_for_resource_rollout statefulset/vault vault-ns 600s; then
-  ERRORS=$((ERRORS + 1))
-elif ! "$SCRIPT_DIR/vault/configure.sh"; then
-  echo "❌ Vault configuration failed"
-  ERRORS=$((ERRORS + 1))
-fi
+# Vault is deployed but deliberately left uninitialised: `vault operator init`
+# is a one-time operation whose output must be handled by a human, so it is not
+# automated here. Auto-unseal is: once initialised, the awskms seal keeps the
+# node unsealed across restarts with no further intervention.
+#
+# There is no rollout wait for Vault. Its readiness probe is `vault status`,
+# which cannot pass before initialisation, so any wait here would only burn its
+# full timeout.
+echo ""
+echo "🔐 Vault deployed, awaiting manual initialisation"
+echo "   The pod stays 0/1 NotReady until you run:"
+echo "     kubectl exec -n vault-ns vault-0 -- vault operator init"
+echo "   Auto-unseal takes over from there — subsequent restarts need nothing."
+echo "   Then enable Kubernetes auth so the injector can log in:"
+echo "     vault auth enable kubernetes"
+echo "     vault write auth/kubernetes/config \\"
+echo "       kubernetes_host=https://\${KUBERNETES_PORT_443_TCP_ADDR}:443"
 if ! wait_for_resource_rollout deployment/authorization-server-deployment authorization-server-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
@@ -424,11 +429,15 @@ fi
 
 echo ""
 echo "   Vault:"
-if kubectl get statefulset vault -n vault-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
-  echo "   ✅ vault ready (single raft node — values-local.yaml)"
-else
-  echo "   ❌ vault not ready"
+# NotReady is the expected state before `vault operator init`, so it is only an
+# error if the StatefulSet never got created at all.
+if ! kubectl get statefulset vault -n vault-ns &>/dev/null; then
+  echo "   ❌ vault statefulset missing"
   ERRORS=$((ERRORS + 1))
+elif kubectl get statefulset vault -n vault-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
+  echo "   ✅ vault ready and unsealed (single raft node — values-local.yaml)"
+else
+  echo "   ℹ️  vault deployed, not yet initialised — run: vault operator init"
 fi
 
 echo ""
