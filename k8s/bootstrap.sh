@@ -60,24 +60,6 @@ wait_for_ingress_admission_webhook() {
   return 1
 }
 
-wait_for_cert_manager_webhook() {
-  local issuer_manifest="$1"
-  local attempts=60
-
-  echo "   Waiting for cert-manager webhook to accept resources..."
-  for ((i=1; i<=attempts; i++)); do
-    if kubectl apply --server-side --dry-run=server -f "$issuer_manifest" &>/dev/null; then
-      echo "✅ cert-manager webhook is accepting resources"
-      return 0
-    fi
-    sleep 5
-  done
-
-  echo "❌ cert-manager webhook was not ready in time"
-  kubectl get pods -n cert-manager 2>/dev/null || true
-  return 1
-}
-
 wait_for_resource_rollout() {
   local resource="$1"
   local namespace="$2"
@@ -192,27 +174,6 @@ kubectl apply -f "$SCRIPT_DIR/cluster-components/ingress-controller.yml"
 wait_for_ingress_nginx
 kubectl apply -f "$SCRIPT_DIR/cluster-components/local.ks.tv.cert-secret.yml"
 
-echo "   Installing cert-manager..."
-kubectl apply -f "$SCRIPT_DIR/cluster-components/cert-manager.yml"
-wait_for_resource_rollout deployment/cert-manager cert-manager 300s
-wait_for_resource_rollout deployment/cert-manager-webhook cert-manager 300s
-wait_for_resource_rollout deployment/cert-manager-cainjector cert-manager 300s
-wait_for_cert_manager_webhook "$SCRIPT_DIR/cluster-components/internal-ca-issuer.yml"
-
-echo "   Creating internal CA issuer..."
-kubectl apply -f "$SCRIPT_DIR/cluster-components/internal-ca-issuer.yml"
-kubectl wait --for=condition=ready clusterissuer/internal-ca-issuer --timeout=180s
-
-echo "   Installing Reloader (restarts pods on cert rotation)..."
-kubectl apply -f "$SCRIPT_DIR/cluster-components/reloader.yml"
-wait_for_resource_rollout deployment/reloader-reloader reloader 300s
-
-# Must be ready before Vault starts: its readiness probe gates on
-# alias/vault-unseal existing, and Vault cannot unseal without it.
-echo "   Installing LocalStack (KMS emulator for Vault auto-unseal)..."
-kubectl apply -f "$SCRIPT_DIR/cluster-components/localstack.yml"
-wait_for_rollout deployment/localstack localstack-ns 300s
-
 echo "   Configuring ArgoCD ingress access..."
 kubectl apply -f "$SCRIPT_DIR/argocd/argocd.local.ks.tv.cert-secret.yml"
 wait_for_ingress_admission_webhook "$SCRIPT_DIR/argocd/ingress.yaml"
@@ -236,7 +197,6 @@ kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-demo-catalog.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-auth-test-spa.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-mockoon.yml"
 kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-discovery-server.yml"
-kubectl apply -f "$SCRIPT_DIR/argocd/argo-application-vault-local.yml"
 
 ERRORS=0
 
@@ -287,23 +247,6 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 if ! wait_for_resource_rollout statefulset/postgres-db-postgresql authorization-server-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
-# Vault is deployed but deliberately left uninitialised: `vault operator init`
-# is a one-time operation whose output must be handled by a human, so it is not
-# automated here. Auto-unseal is: once initialised, the awskms seal keeps the
-# node unsealed across restarts with no further intervention.
-#
-# There is no rollout wait for Vault. Its readiness probe is `vault status`,
-# which cannot pass before initialisation, so any wait here would only burn its
-# full timeout.
-echo ""
-echo "🔐 Vault deployed, awaiting manual initialisation"
-echo "   The pod stays 0/1 NotReady until you run:"
-echo "     kubectl exec -n vault-ns vault-0 -- vault operator init"
-echo "   Auto-unseal takes over from there — subsequent restarts need nothing."
-echo "   Then enable Kubernetes auth so the injector can log in:"
-echo "     vault auth enable kubernetes"
-echo "     vault write auth/kubernetes/config \\"
-echo "       kubernetes_host=https://\${KUBERNETES_PORT_443_TCP_ADDR}:443"
 if ! wait_for_resource_rollout deployment/authorization-server-deployment authorization-server-ns 600s; then
   ERRORS=$((ERRORS + 1))
 fi
@@ -425,19 +368,6 @@ if kubectl get statefulset postgres-db-postgresql -n authorization-server-ns -o 
 else
   echo "   ❌ postgres-db-postgresql not ready"
   ERRORS=$((ERRORS + 1))
-fi
-
-echo ""
-echo "   Vault:"
-# NotReady is the expected state before `vault operator init`, so it is only an
-# error if the StatefulSet never got created at all.
-if ! kubectl get statefulset vault -n vault-ns &>/dev/null; then
-  echo "   ❌ vault statefulset missing"
-  ERRORS=$((ERRORS + 1))
-elif kubectl get statefulset vault -n vault-ns -o jsonpath='{.status.readyReplicas}' 2>/dev/null | grep -q "1"; then
-  echo "   ✅ vault ready and unsealed (single raft node — values-local.yaml)"
-else
-  echo "   ℹ️  vault deployed, not yet initialised — run: vault operator init"
 fi
 
 echo ""
