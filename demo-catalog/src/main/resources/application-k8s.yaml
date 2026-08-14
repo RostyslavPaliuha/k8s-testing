@@ -23,7 +23,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://local.ks.tv/authorization
+          issuer-uri: ${AUTHORIZATION_SERVER_ISSUER_URI:https://auth.dev.k8s.plustvs.net/authorization}
           jwk-set-uri: http://authorization-server.authorization-server-ns.svc.cluster.local/authorization/oauth2/jwks
 server:
   port: 8083
@@ -40,6 +40,38 @@ management:
     health:
       show-details: always
   tracing:
+    export:
+      otlp:
+        enabled: true
     sampling:
       probability: 1.0
-
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
+    logging:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/logs
+  logging:
+    export:
+      otlp:
+        enabled: true
+  otlp:
+    metrics:
+      export:
+        enabled: true
+        url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/metrics
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+    tags:
+      application: ${spring.application.name}
+      instance-id: ${POD_NAME}
+  observations:
+    enable:
+      all: true
